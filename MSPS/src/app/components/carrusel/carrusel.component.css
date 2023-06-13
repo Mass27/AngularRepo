@@ -1,0 +1,51 @@
+
+.wrapper-content {
+  background-color: rgb(230, 244, 230);
+}
+
+.first-tab {
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  }
+
+  .first-tab mat-card{
+
+    margin-left: 50px;
+  }
+
+
+  .card{
+    max-width: 400px;
+  }
+
+  mat-card p{
+    font-size: 16px;
+
+  }
+ .colorA button{
+    background-color: rgb(255, 202, 0);
+    color: white;
+
+  }
+  mat-card-header{
+    font-weight: 550;
+    font-size: 15px;
+    color: rgb(255, 202, 0);
+  }
+
+mat-card-content img{
+  width: 100%;
+}
+
+.pj{
+text-align: justify;
+
+}
+
+
+.colorG button{
+  background-color: rgb(0, 141, 0);
+  color:white
+}
