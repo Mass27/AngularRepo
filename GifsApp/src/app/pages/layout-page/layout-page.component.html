@@ -1,0 +1,25 @@
+<mat-sidenav-container fullscreen>
+  <mat-sidenav #history mode="push" [ngStyle]="{ width: '250px' }">
+    <mat-toolbar class="color">
+      <button mat-icon-button (click)="history.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="cl-letters"> Historial </span>
+      <mat-icon></mat-icon>
+
+      <mat-icon
+        ><span class="material-symbols-outlined"> history </span></mat-icon
+      >
+    </mat-toolbar>
+  </mat-sidenav>
+
+  <mat-toolbar class="color">
+    <button mat-icon-button (click)="history.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <app-search-box></app-search-box>
+
+  <app-card [gifs]="gifs" class="card"></app-card>
+</mat-sidenav-container>

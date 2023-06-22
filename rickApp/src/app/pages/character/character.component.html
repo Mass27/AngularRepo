@@ -1,0 +1,22 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title> {{ characters?.name }} </mat-card-title>
+      <mat-card-subtitle> {{ characters?.created }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <img mat-card-image [src]="characters?.image" alt="characters.status" />
+    <mat-card-content>
+      <strong>{{ characters?.status }}</strong>
+
+      <mat-chip-listbox>
+        <mat-chip>
+          {{ characters?.species }}
+        </mat-chip>
+      </mat-chip-listbox>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button  (click)="goBack()">Go Back</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

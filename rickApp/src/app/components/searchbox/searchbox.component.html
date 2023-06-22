@@ -1,0 +1,21 @@
+<div class="search-container">
+  
+ <mat-form-field>
+    <mat-label>Buscador de Personajes</mat-label>
+    <input type="text" matInput [formControl]="searchInput" (input)="searchCharacter()" [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onselect($event)">
+      <mat-option *ngFor="let character of characters" [value]="character">
+        {{ character.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <div *ngIf="selectedCharacter">
+    <h5>Resultado de búsqueda:</h5>
+    <p>{{ selectedCharacter.name }}</p>
+    <!-- Aquí puedes mostrar más detalles sobre el personaje -->
+  </div>
+</div>
+
+
+

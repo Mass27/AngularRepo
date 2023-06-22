@@ -1,0 +1,23 @@
+<div class="container">
+  <mat-card class="color-sec">
+    <mat-card-header>
+      <mat-card-title> {{ characters.name }} </mat-card-title>
+      <mat-card-subtitle> </mat-card-subtitle>
+    </mat-card-header>
+
+    <img mat-card-image [src]="characters.image" alt="characters.status" />
+    <mat-card-content>
+      <strong>Status:{{ characters.status }}</strong>
+      <br />
+      <strong>Origin:{{ characters.origin.name }}</strong>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        [routerLink]="['/character', characters.id]"
+      >
+        Leer Mas...
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

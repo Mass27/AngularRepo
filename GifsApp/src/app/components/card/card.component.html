@@ -1,0 +1,12 @@
+<div class="container">
+  <mat-card *ngFor="let gif of gifs">
+    <mat-card-header>
+      <mat-card-title></mat-card-title>
+    </mat-card-header>
+
+    <img [src]="gif.images.downsized_medium.url" [alt]="gif.title" />
+    <mat-card-content>
+      {{ gif.title }}
+    </mat-card-content>
+  </mat-card>
+</div>

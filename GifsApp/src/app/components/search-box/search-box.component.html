@@ -1,0 +1,12 @@
+<form class="fsearch">
+  <mat-form-field>
+    <mat-label>Buscador</mat-label>
+    <input
+      type="text"
+      matInput
+      placeholder="Buscar gifs..."
+      (keyup.enter)="searchTag()"
+      #txtTagInput
+    />
+  </mat-form-field>
+</form>

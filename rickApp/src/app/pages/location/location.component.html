@@ -1,0 +1,28 @@
+<div class="container">
+  <mat-card class="location-card" *ngFor="let loca of location">
+    <mat-card-header>
+      <mat-card-title>{{ loca.name }}</mat-card-title>
+      <mat-card-subtitle>{{ loca.dimension }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <button mat-button (click)="getCharactersByLocation(loca.id)">
+        {{ loca.showCharacters ? 'Ocultar Personajes' : 'Mostrar Personajes' }}
+      </button>
+      <div class="characters-container" *ngIf="loca.showCharacters">
+        <div class="character-scroll">
+          <mat-card class="character-card" *ngFor="let character of loca.characters">
+            <mat-card-header>
+              <mat-card-title>{{ character.name }}</mat-card-title>
+              <mat-card-subtitle>Status: {{ character.status }}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image [src]="character.image" alt="{{ character.name }}">
+            <mat-card-content>
+              <p>Species: {{ character.species }}</p>
+              <p>Gender: {{ character.gender }}</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
