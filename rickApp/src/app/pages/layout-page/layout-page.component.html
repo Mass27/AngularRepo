@@ -1,9 +1,11 @@
-
-
-
-<mat-sidenav-container fullscreen #containerall class="color-prin">
-  <mat-sidenav #sidenav mode="push" [ngStyle]="{ width: '250px' }">
-    <mat-toolbar >
+<mat-sidenav-container fullscreen #containerall >
+  <mat-sidenav
+    #sidenav
+    mode="push"
+    [ngStyle]="{ width: '220px' }"
+    class="sidenav-container-color"
+  >
+    <mat-toolbar class="sidenav-container-color">
       <span>Menú</span>
       <span class="spacer"></span>
       <button mat-icon-button (click)="sidenav.toggle()">
@@ -33,7 +35,15 @@
     <button mat-button>Logout</button>
   </mat-toolbar>
 
-  <div class="container p-2">
+  <div class="container-tema">
+    <img class="background-image" src="assets/back.jpg" alt="" />
+    <div class="content">
+      <p>Rick and Morty API Example</p>
+      <small>By Mass</small>
+    </div>
+  </div>
+
+  <div class="container-list p-2">
     <router-outlet></router-outlet>
   </div>
 </mat-sidenav-container>

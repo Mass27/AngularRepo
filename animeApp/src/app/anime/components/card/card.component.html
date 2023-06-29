@@ -1,0 +1,27 @@
+<div class="max-w-sm mx-auto bg-white rounded-lg overflow-hidden shadow-lg">
+  <div *ngIf="animes" class="flex justify-center">
+    <img [src]="animes.images['jpg'].image_url" alt="Imagen" class="object-contain h-64">
+  </div>
+  <div class="px-6 py-4">
+    <div class="font-bold text-xl mb-2">{{ animes.title }}</div>
+    <div>
+      <p class="text-gray-700 text-base">
+        {{ animes.synopsis | slice:0:127 }}...
+      </p>
+    </div>
+    <div class="flex flex-wrap justify-start mt-4">
+      <ng-container *ngFor="let item of animes.genres | slice:0:3">
+        <span class="inline-block bg-red-700 text-white px-3 py-1 text-sm font-semibold rounded-full mr-2 mb-2">
+          {{ item.name }}
+        </span>
+      </ng-container>
+    </div>
+    <div class="mt-4">
+      <button [routerLink]="['/anime',animes.mal_id]" class="bg-red-700 text-white py-2 px-4 rounded-lg">
+        Ver más
+      </button>
+
+
+    </div>
+  </div>
+</div>

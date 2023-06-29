@@ -1,3 +1,44 @@
 .color-tool{
-  background-color: #FF8E00;
+  background-color: transparent;
+}
+.sidenav-container-color{
+  background-color: #E2D65B;
+}
+.container-tema {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container-tema .background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  object-fit: cover;
+}
+
+.container-tema .content {
+  text-align: center;
+  color: #000;
+}
+
+.container-tema .content p {
+  font-size: 36px;
+  font-weight: 700;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+
+.container-tema .content small {
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+  font-weight: 650;
+}
+.container-list {
+  padding-left: 100px;
 }

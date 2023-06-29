@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component ,OnInit} from '@angular/core';
+
 import { ResultCharacter } from 'src/app/interfaces/characters.interface';
 import { rickService } from '../../services/rick.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
+
 
 @Component({
   selector: 'app-character',
@@ -16,7 +18,8 @@ public characters?:ResultCharacter;
 
 constructor(  private rickService:rickService,
                private activatedRoute:ActivatedRoute,
-                private router:Router   ){}
+                private router:Router,
+             ){}
 
 
 

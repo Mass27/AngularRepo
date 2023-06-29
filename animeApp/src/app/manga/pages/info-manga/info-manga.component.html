@@ -1,0 +1,21 @@
+<div class="container mx-auto">
+  <div class="flex flex-col md:flex-row" >
+
+    <!-- TODO: Imagen del anime -->
+
+
+    <!-- Información del anime -->
+
+
+    <div class="md:w-2/3">
+      <h2 class="text-2xl font-bold mb-4">{{manga | json }}</h2>
+      <p class="text-gray-700 mb-4">  </p>
+      <div class="flex flex-wrap mb-4">
+        <span class="inline-block bg-red-700 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2"
+          ></span>
+      </div>
+      <button class="bg-red-700 text-white py-2 px-4 rounded-lg" (click)="goBack()">Volver</button>
+    </div>
+
+  </div>
+</div>

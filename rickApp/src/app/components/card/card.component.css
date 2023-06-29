@@ -5,11 +5,11 @@ margin-top: 10px;
 
 .color-sec{
 
-  background-color: #FF4E4E;
+  background-color: rgb(248, 228, 43);
 }
 
 .container button{
 
-background-color:#E2D65B ;
-
+background-color:rgb(25, 21, 20) ;
+color: white;
 }

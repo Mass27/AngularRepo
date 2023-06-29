@@ -16,6 +16,7 @@ import { LocationComponent } from './pages/location/location.component';
 import { CharacterComponent } from './pages/character/character.component';
 import { SearchComponent } from './pages/search/search.component';
 import { SearchboxComponent } from './components/searchbox/searchbox.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SearchboxComponent } from './components/searchbox/searchbox.component';
     LocationComponent,
     CharacterComponent,
     SearchComponent,
-    SearchboxComponent
+    SearchboxComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
