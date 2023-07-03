@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Datum} from '../../interfaces/anime.interfaces';
+import { Datum } from '../../interfaces/anime.interfaces';
 import { Router } from '@angular/router';
 
 
@@ -13,6 +13,8 @@ export class CardComponent implements OnInit {
 
 
 @Input() animes!:Datum;
+
+
 
 constructor(private router: Router) {}
 
