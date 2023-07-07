@@ -1,5 +1,5 @@
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
-  <div *ngFor="let empleado of empleados" class="bg-white shadow-lg rounded-lg p-6">
+  <div *ngFor="let empleado of empleados" class="bg-white shadow-lg rounded-lg p-6 transform transition duration-300 ease-in-out hover:scale-105">
     <h2 class="text-2xl font-bold mb-4">{{ empleado.nombrecompleto }}</h2>
     <div class="border-t-2 border-gray-200 pt-2">
       <p class="text-gray-600 mb-2"><strong>Edad:</strong> {{ empleado.edad }}</p>
@@ -15,7 +15,7 @@
     </div>
 
     <!-- Muestra otros datos del empleado según la estructura de la interfaz -->
-    <button [routerLink]="['/empleados/edit',empleado.idempleado]" class="mt-4 bg-red-700 text-white py-2 px-4 rounded-lg hover:bg-red-800 transition-colors duration-300 ease-in-out">
+    <button [routerLink]="['/empleados/edit',empleado.idempleado]" class="mt-4 bg-red-700 text-white py-2 px-4 rounded-lg hover:bg-red-800 transition-colors duration-300 ease-in-out transform hover:scale-105">
      Editar
     </button>
   </div>

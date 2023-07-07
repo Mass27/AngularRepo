@@ -10,6 +10,7 @@ import { CardComponent } from './components/card/card.component';
 import { SearchBoxComponent } from './components/search-box/search-box.component';
 import { SharedModule } from '../Shared/shared.module';
 import { EmpleadoPageComponent } from './pages/empleado-page/empleado-page.component';
+import { AgregarCargosComponent } from './pages/agregar-cargos/agregar-cargos.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { EmpleadoPageComponent } from './pages/empleado-page/empleado-page.compo
     AgregarComponent,
     CardComponent,
     SearchBoxComponent,
-    EmpleadoPageComponent
+    EmpleadoPageComponent,
+    AgregarCargosComponent
   ],
   imports: [
     CommonModule,

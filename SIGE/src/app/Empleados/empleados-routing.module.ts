@@ -4,6 +4,7 @@ import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { ListComponent } from './pages/list/list.component';
 import { AgregarComponent } from './pages/agregar/agregar.component';
 import { EmpleadoPageComponent } from './pages/empleado-page/empleado-page.component';
+import { AgregarCargosComponent } from './pages/agregar-cargos/agregar-cargos.component';
 
 const routes: Routes = [
   {
@@ -13,8 +14,11 @@ const routes: Routes = [
       {
         path: 'agregar',
         component: AgregarComponent,
+      },{
+        path:'agregar-cargo',
+        component:AgregarCargosComponent
       },
-        { path: 'edit/:id',
+      { path: 'edit/:id',
       component: AgregarComponent },{
         path: 'list',
         component: ListComponent,

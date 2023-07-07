@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { EmpleadoList } from '../interfaces/empleados.interface';
-import { Cargos } from '../interfaces/cargos.interfaces';
+import { Cargos, DatumCargos } from '../interfaces/cargos.interfaces';
 import { Direccion } from '../interfaces/direccion.interface';
 import { Contratos } from '../interfaces/contratos.intefaces';
 import { EmpleadoByID } from '../interfaces/EmpleadoById.interfaces';
@@ -26,7 +26,11 @@ export class EmpleadosService {
       empleado
     );
   }
+  addCargo(cargo:DatumCargos):Observable<DatumCargos>{
+    return this.httpClient.post<DatumCargos>(`${this.baseUrl}/cargos/guardar`,
+    cargo)
 
+  }
   getEmpleadoById(id: string): Observable<EmpleadoByID> {
     return this.httpClient.get<EmpleadoByID>(
       `${this.baseUrl}/empleados/listarById?idempleado=${id}`
@@ -52,4 +56,6 @@ export class EmpleadosService {
   getContratos(): Observable<Contratos> {
     return this.httpClient.get<Contratos>(`${this.baseUrl}/contratos/listar`);
   }
+
+
 }
