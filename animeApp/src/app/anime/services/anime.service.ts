@@ -3,7 +3,6 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Anime } from '../interfaces/anime.interfaces';
 import { environment } from '../../../environments/environment';
-import { Data } from '../interfaces/anime-episodes.intefaces';
 import { Genre } from '../interfaces/genres.interface';
 import { InfoAnime } from '../interfaces/animeInfo.interface';
 
@@ -30,11 +29,9 @@ export class AnimeService {
     );
   }
 
-  getAnimeEpisodesById(id: string): Observable<Data> {
-    return this.httpClient.get<Data>(
-      `${this.baseUrl}/anime/${id}/videos/episodes`
-    );
-  }
+
+
+
 
   getSugges(query: string): Observable<Anime> {
     return this.httpClient.get<Anime>(`${this.baseUrl}/anime?q=${query}`);

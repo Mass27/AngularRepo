@@ -1,14 +1,17 @@
-<select [(ngModel)]="selectedGenreId" (change)="filterByGenre(selectedGenreId)">
-  <option value="">Todos los géneros</option>
-  <option *ngFor="let genre of genres" [value]="genre.mal_id">{{ genre.name }}</option>
-</select>
-
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
-  <app-card *ngFor="let anime of animeList | slice: 0:20" [animes]="anime"></app-card>
+<div class="relative">
+  <select [(ngModel)]="selectedGenreId" (change)="filterByGenre(selectedGenreId)"
+    class="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300">
+    <option value="">Todos los géneros</option>
+    <option *ngFor="let genre of genres" [value]="genre.mal_id">{{ genre.name }}</option>
+  </select>
 </div>
 
-<div class="flex items-center justify-center space-x-4 mt-4">
-  <button class="px-4 py-2 bg-red-700 hover:bg-rose-950 text-white rounded-md" (click)="previousPage()">Anterior</button>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+  <app-card *ngFor="let anime of animeList | slice: 0:20" [animes]="anime" class="transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"></app-card>
+</div>
+
+<div class="flex items-center justify-center space-x-4 mt-8">
+  <button class="px-4 py-2 text-white bg-red-700 rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300 transition duration-300 ease-in-out" (click)="previousPage()">Anterior</button>
   <span class="text-gray-700">{{ currentPage }}</span>
-  <button class="px-4 py-2 bg-red-700 hover:bg-rose-950 text-white rounded-md" (click)="nextPage()">Siguiente</button>
+  <button class="px-4 py-2 text-white bg-red-700 rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300 transition duration-300 ease-in-out" (click)="nextPage()">Siguiente</button>
 </div>

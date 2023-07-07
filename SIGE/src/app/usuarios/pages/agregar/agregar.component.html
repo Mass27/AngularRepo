@@ -1,0 +1,46 @@
+<form [formGroup]="formulario" (ngSubmit)="enviarFormulario()" class="max-w-md mx-auto">
+  <!-- Campo Usuario -->
+  <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="usuario">Usuario</label>
+    <input formControlName="usuario" type="text" id="usuario" placeholder="Usuario" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+  </div>
+
+  <!-- Campo Contraseña -->
+  <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="contra">Contraseña</label>
+    <input formControlName="contrasena" type="password" id="contra" placeholder="Contraseña" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+  </div>
+
+  <!-- Campo Correo -->
+  <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="correo">Correo</label>
+    <input formControlName="correo" type="email" id="correo" placeholder="Correo" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+  </div>
+
+
+  <!-- <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="codigo">Código</label>
+    <input formControlName="codigo" type="text" id="codigo" placeholder="Código" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+  </div>
+
+
+  <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="fallido">Fallido</label>
+    <input formControlName="fallido" type="number" id="fallido" placeholder="Fallido" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+  </div> -->
+
+  <!-- Campo Estado -->
+  <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="estado">Estado</label>
+    <select formControlName="estado" id="estado" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      <option value="ACT">ACT</option>
+      <option value="INA">INA</option>
+      <option value="BLO">BLO</option>
+    </select>
+  </div>
+
+  <!-- Botón Enviar -->
+  <div class="mb-4">
+    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Enviar</button>
+  </div>
+</form>

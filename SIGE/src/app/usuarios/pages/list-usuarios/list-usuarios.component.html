@@ -1,0 +1,17 @@
+
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+  <div *ngFor="let item of users" class="bg-white shadow-lg rounded-lg p-6">
+    <h2 class="text-xl font-bold mb-4">{{ item.usuario}}</h2>
+    <p class="mb-2">Correo: {{ item.correo }}</p>
+    <p class="mb-2">Codigo: {{ item.codigo }}</p>
+    <p class="mb-2">fallido: {{ item.fallido }}</p>
+    <p class="mb-2">Estado: {{ item.estado }}</p>
+
+
+    <!-- Muestra otros datos del empleado según la estructura de la interfaz -->
+    <button [routerLink]="" class="bg-red-700 text-white py-2 px-4 rounded-lg">
+      Ver más
+    </button>
+  </div>
+</div>

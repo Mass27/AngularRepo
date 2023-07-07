@@ -1,0 +1,56 @@
+<nav>
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between py-4">
+      <div class="flex items-center">
+        <img src="assets/LogoMSPSBlack.png" alt="Logo MSPS" class="h-12 w-12" />
+        <h1 class="ml-2 text-lg font-semibold">MSPS</h1>
+      </div>
+
+      <div class="flex-grow"></div>
+      <div class="hidden md:flex space-x-4">
+        <div class="relative" (click)="toggleListadoMenu()">
+          <button class="bg-green-500 text-white hover:bg-green-600 focus:outline-none rounded px-4 py-2">
+            Listado
+            <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 inline-block ml-1">
+              <path
+                fill-rule="evenodd"
+                d="M3 5a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H4a1 1 0 0 1-1-1zm0 5a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H4a1 1 0 0 1-1-1zm0 5a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H4a1 1 0 0 1-1-1z"
+              ></path>
+            </svg>
+          </button>
+          <div *ngIf="listadoMenuOpen" class="absolute bg-white mt-2 py-2 px-4 rounded-md shadow-lg">
+            <button class="block text-gray-700 hover:bg-gray-100 py-1 px-2 rounded" routerLink="/usuarios">Usuarios</button>
+            <button class="block text-gray-700 hover:bg-gray-100 py-1 px-2 rounded" routerLink="/empleados">Empleados</button>
+          </div>
+        </div>
+        <div class="relative" (click)="toggleAgregarMenu()">
+          <button class="bg-red-800 text-white hover:bg-red-900 focus:outline-none rounded px-4 py-2">
+            Agregar
+            <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 inline-block ml-1">
+              <path
+                fill-rule="evenodd"
+                d="M3 5a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H4a1 1 0 0 1-1-1zm0 5a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H4a1 1 0 0 1-1-1zm0 5a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H4a1 1 0 0 1-1-1z"
+              ></path>
+            </svg>
+          </button>
+          <div *ngIf="agregarMenuOpen" class="absolute bg-white mt-2 py-2 px-4 rounded-md shadow-lg">
+            <button class="block text-gray-700 hover:bg-gray-100 py-1 px-2 rounded" routerLink="/usuarios/agregar">Usuarios</button>
+            <button class="block text-gray-700 hover:bg-gray-100 py-1 px-2 rounded" routerLink="/empleados/agregar">Empleados</button>
+          </div>
+        </div>
+        <button class="bg-yellow-400 text-white hover:bg-yellow-500 focus:outline-none rounded px-4 py-2">Noticias</button>
+      </div>
+
+      <div class="md:hidden ml-auto">
+        <button class="text-white focus:outline-none" (click)="toggleMenu()">
+          <svg viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6">
+            <path
+              fill-rule="evenodd"
+              d="M3 5a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H4a1 1 0 0 1-1-1zm0 5a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H4a1 1 0 0 1-1-1zm0 5a1 1 0 0 1 1-1h12a1 1 0 0 1 0 2H4a1 1 0 0 1-1-1z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

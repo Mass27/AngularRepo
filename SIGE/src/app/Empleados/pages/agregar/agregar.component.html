@@ -1,0 +1,244 @@
+
+
+<div class="flex justify-center mt-8">
+  <div class="max-w-md w-full">
+    <form
+      [formGroup]="formulario"
+      class="bg-white shadow-lg rounded-lg p-6"
+      (ngSubmit)="enviarFormulario()"
+    >
+      <div class="grid grid-cols-2 gap-4">
+        <!-- Campo Identidad -->
+        <div>
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="identidad"
+            >Identidad</label
+          >
+          <input
+            formControlName="identidad"
+            type="text"
+            id="identidad"
+            placeholder="Identidad"
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+
+        <!-- Campo Nombre Completo -->
+        <div>
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="nombreCompleto"
+            >Nombre Completo</label
+          >
+          <input
+            formControlName="nombrecompleto"
+            type="text"
+            id="nombreCompleto"
+            placeholder="Nombre Completo"
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+
+        <!-- Campo Correo -->
+        <div>
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="correo"
+            >Correo</label
+          >
+          <input
+            formControlName="correo"
+            type="email"
+            id="correo"
+            placeholder="Correo"
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+
+        <!-- Campo Género -->
+        <div>
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="Genero"
+            >Género</label
+          >
+          <select
+            formControlName="genero"
+            id="Genero"
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          >
+            <option *ngFor="let item of generos" [value]="item.desc">
+              {{ item.desc }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Campo Estado Civil -->
+        <div>
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="estadoCivil"
+            >Estado Civil</label
+          >
+          <select
+            formControlName="estcivil"
+            id="estadoCivil"
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          >
+            <option value="" *ngFor="let item of estados" [value]="item.id">
+              {{ item.desc }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Campo Teléfono -->
+        <div>
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="telefono"
+            >Teléfono</label
+          >
+          <input
+            formControlName="telefono"
+            type="tel"
+            id="telefono"
+            placeholder="Teléfono"
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+
+        <!-- Campo Departamento -->
+        <div>
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="departamento"
+            >Departamento</label
+          >
+          <input
+            formControlName="departamento"
+            type="text"
+            id="departamento"
+            placeholder="Departamento"
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+
+        <!-- Campo Tipo de Sangre -->
+        <div>
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="tipoSangre"
+            >Tipo de Sangre</label
+          >
+          <input
+            formControlName="tiposangre"
+            type="text"
+            id="tipoSangre"
+            placeholder="Tipo de Sangre"
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+
+        <!-- Campo Fecha de Nacimiento -->
+        <div>
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="fechaNacimiento"
+            >Fecha de Nacimiento</label
+          >
+          <input
+            formControlName="fechanac"
+            type="date"
+            id="fechaNacimiento"
+            placeholder="Fecha de Nacimiento"
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+
+        <!-- Campo ID Usuario -->
+        <div>
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="idUsuario"
+            >ID Usuario</label
+          >
+          <input
+            formControlName="idusuario"
+            type="number"
+            id="idUsuario"
+            placeholder="ID Usuario"
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+
+        <!-- Campo Dirección -->
+        <div>
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="direccion"
+            >Dirección</label
+          >
+          <select
+            formControlName="iddireccion"
+            id="direccion"
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          >
+            <option *ngFor="let direccion of direcLis" [value]="direccion.id">
+              {{ direccion.sector }}, {{ direccion.colonia }},
+              {{ direccion.calle }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Campo Cargo -->
+        <div>
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="cargo"
+            >Cargo</label
+          >
+          <select
+            formControlName="idcargo"
+            id="cargo"
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          >
+            <option *ngFor="let cargo of cargos" [value]="cargo.idcargo">
+              {{ cargo.descripcionCargo }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Campo Contrato -->
+        <div>
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="contrato"
+            >Contrato</label
+          >
+          <select
+            formControlName="idcontrato"
+            id="contrato"
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          >
+            <option
+              *ngFor="let contrato of contratos"
+              [value]="contrato.idcontrato"
+            >
+              {{ contrato.tipocontrato }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Botón Guardar -->
+      <div class="text-center mt-6">
+        <button
+          (click)="enviarFormulario()"
+          type="submit"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Guardar
+        </button>
+      </div>
+    </form>
+
+    <p *ngIf="respuestaServidor" class="text-center text-green-500">
+      {{ respuestaServidor }}
+    </p>
+  </div>
+</div>

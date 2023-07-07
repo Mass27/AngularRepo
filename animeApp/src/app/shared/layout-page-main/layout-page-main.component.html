@@ -8,13 +8,15 @@
       <div class="hidden md:flex space-x-2">
         <button class="bg-red-700 text-white py-2 px-4 rounded-lg" routerLink="/anime">Anime</button>
         <button class="bg-red-700 text-white py-2 px-4 rounded-lg" routerLink="/manga">Manga</button>
-        <button class="bg-red-700 text-white py-2 px-4 rounded-lg">Personajes</button>
+        <button class="bg-red-700 text-white py-2 px-4 rounded-lg">Noticias</button>
       </div>
 
-
-
-     <div class="md:hidden">
-        <button class="text-white focus:outline-none focus:text-white" aria-label="Toggle menu">
+      <div class="md:hidden">
+        <button
+          class="text-white focus:outline-none focus:text-white"
+          aria-label="Toggle menu"
+          (click)="toggleMenu()"
+        >
           <svg viewBox="0 0 20 20" fill="currentColor" class="h-6 w-6">
             <path
               fill-rule="evenodd"
@@ -24,8 +26,13 @@
         </button>
       </div>
     </div>
+    <div class="md:hidden" [class.hidden]="!isMenuOpen">
+      <div class="flex flex-col space-y-2">
+        <button class="bg-red-700 text-white py-2 px-4 rounded-lg" routerLink="/anime">Anime</button>
+        <button class="bg-red-700 text-white py-2 px-4 rounded-lg" routerLink="/manga">Manga</button>
+        <button class="bg-red-700 text-white py-2 px-4 rounded-lg">Noticias</button>
+      </div>
+    </div>
   </div>
 </nav>
-
-
 

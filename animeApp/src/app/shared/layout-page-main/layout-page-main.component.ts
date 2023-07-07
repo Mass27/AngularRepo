@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./layout-page-main.component.css']
 })
 export class LayoutPageMainComponent {
+  isMenuOpen: boolean = false;
 
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 }
