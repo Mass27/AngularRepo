@@ -1,0 +1,30 @@
+<div class="scanner-sheel" [hidden]="!hasDevices">
+  <header>
+    <select (change)="onDeviceSelectChange($event.target.value)">
+      <option value="" [selected]="!currentDevice">No Device Select</option>
+      <option
+        *ngFor="let device of availableDevices"
+        [value]="device.deviceId"
+        [selected]="currentDevice && device.deviceId === currentDevice.deviceId"
+      >
+        {{ device.label }}
+      </option>
+    </select>
+  </header>
+
+  <zxing-scanner
+    #scanner
+    start="true"
+    [device]="currentDevice"
+    (scanSuccess)="handleQrCodeResult($event)" [formats]="['QR_CODE']"
+  ></zxing-scanner>
+
+
+<section class="results" *ngIf="qrResultString"></section>
+<small>Result</small>
+<strong>{{ qrResultString }}</strong>
+</div>
+
+
+
+
