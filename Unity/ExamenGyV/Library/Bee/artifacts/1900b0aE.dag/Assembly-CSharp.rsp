@@ -358,6 +358,9 @@
 "Assets/AurynSky/Forest Pack/Scripts/MaterialMover.cs"
 "Assets/AurynSky/Forest Pack/Scripts/Rotator.cs"
 "Assets/AurynSky/Forest Pack/Scripts/WheelController.cs"
+"Assets/scripts/AnimationManager.cs"
+"Assets/scripts/checkPoint.cs"
+"Assets/scripts/DetectionArea.cs"
 "Assets/scripts/GameManager.cs"
 "Assets/scripts/playerController.cs"
 -langversion:9.0

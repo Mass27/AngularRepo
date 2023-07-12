@@ -10,12 +10,22 @@ public class playerController : MonoBehaviour
     private Vector3 velocity;
     private float gravity = -9.8f;
     private bool inFloor;
+    private int currentJump = 1;
+    private bool isTripleJumping;
+    private bool isFalling;
+
 
     [Header("Stats")]
     public float speedMovement;
     public float turnTime = 0.2f;
     public float jumpHeight = 3;
     public float jumpForce = -2;
+    public float jumpTime = 3.5f;
+    public int life = 100;
+    public int maxLives = 3;
+    private int remainingLives;
+
+
 
     [Header("References")]
     public Transform floor;
@@ -27,20 +37,57 @@ public class playerController : MonoBehaviour
 
     private void Awake()
     {
+        transform.position = new Vector3(PlayerPrefs.GetFloat("X"),
+            PlayerPrefs.GetFloat("Y"),
+            PlayerPrefs.GetFloat("Z"));
+
         controller = GetComponent<CharacterController>();
-        anim = GetComponent<Animator>();
+        anim =  transform.GetChild(0).GetComponent<Animator>();
+
+        remainingLives = maxLives;
+
     }
 
 
     // Update is called once per frame
     private void Update()
     {
+        if (!isFalling)
+        {
+            Walk();
+            jumpManager();
+            Die();
 
-        Walk();
-       Jump();
+        }
+       
         anim.SetFloat("YVelocity", velocity.y);
         
     }
+    public void SetIsFalling(bool value)
+    {
+        isFalling = value;
+
+    }
+
+    private void jumpManager()
+    {
+        switch (currentJump)
+        {
+            case 1:
+                Jump(jumpHeight);
+                break;
+            case 2:
+                Jump(jumpHeight + jumpHeight / 2);
+                break;
+            case 3:
+                Jump(2 * jumpHeight);
+                break;
+
+        }
+
+    }
+
+
 
     private void Walk()
     {
@@ -53,7 +100,7 @@ public class playerController : MonoBehaviour
         if(direction != Vector3.zero)
         {
             anim.SetBool("isMoving", true);
-            float rotationAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg * mainCamera.transform.eulerAngles.y;
+            float rotationAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + mainCamera.transform.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y,rotationAngle, ref turnVelocity, turnTime);
             Vector3 movemenetDirection = Quaternion.Euler(0, rotationAngle, 0) * Vector3.forward;
             transform.rotation = Quaternion.Euler(0, angle, 0);
@@ -63,15 +110,7 @@ public class playerController : MonoBehaviour
             anim.SetBool("isMoving", false);
     }
 
-    public void Disablejump()
-    {
-
-        anim.SetBool("IsJumping", false);
-
-
-
-    }
-   private void Jump()
+   private void Jump(float height)
     {
 
         inFloor = Physics.CheckSphere(floor.position, floorDistance, layerFloor);
@@ -81,7 +120,13 @@ public class playerController : MonoBehaviour
         
         if(Input.GetKeyDown(KeyCode.Space) && inFloor)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * jumpForce * gravity);
+            anim.SetInteger("currentJump", currentJump);
+            if (currentJump >= 3)
+                currentJump = 1;
+            else
+                currentJump++;
+
+            velocity.y = Mathf.Sqrt(height * jumpForce * gravity);
             anim.SetBool("IsJumping", true);
 
         }
@@ -90,5 +135,61 @@ public class playerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
    }
+
+
+
+    public void ReceiveDamage()
+    {
+
+        life -= 33;
+        remainingLives--;
+        GameManager.Instance.updateLife();
+
+        if (remainingLives <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void ReceiveDamage(int damage)
+    {
+        life -= damage;
+        GameManager.Instance.updateLife();
+
+    }
+
+    private void Die()
+    {
+        if(life <=0)
+            gameObject.SetActive(false);
+    }
+
+
+
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+
+        if (hit.gameObject.CompareTag("Floor"))
+        {
+            if (!isTripleJumping)
+                StartCoroutine(touchFloor());
+
+        }
+
+
+    }
+
+    private IEnumerator touchFloor() {
+    
+
+        isTripleJumping = true;
+        yield return new WaitForSeconds(jumpTime);
+        currentJump = 1;
+        isTripleJumping= false;
+    }
+
+
+
 
 }
