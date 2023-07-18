@@ -5,6 +5,7 @@ import { ListComponent } from './pages/list/list.component';
 import { AgregarComponent } from './pages/agregar/agregar.component';
 import { EmpleadoPageComponent } from './pages/empleado-page/empleado-page.component';
 import { AgregarCargosComponent } from './pages/agregar-cargos/agregar-cargos.component';
+import { AggDireccionesComponent } from './pages/agg-direcciones/agg-direcciones.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
       },{
         path:'agregar-cargo',
         component:AgregarCargosComponent
+      }
+      ,{
+        path:'agregar-direcciones',
+        component:AggDireccionesComponent
       },
       { path: 'edit/:id',
       component: AgregarComponent },{

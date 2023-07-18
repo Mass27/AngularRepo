@@ -9,5 +9,4 @@ export interface Cargos {
 export interface DatumCargos {
   idcargo:          number;
   descripcionCargo: string;
-  fechaingreso:     string;
 }

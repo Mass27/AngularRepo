@@ -12,6 +12,8 @@ import { Contratos, DatumCon } from '../../interfaces/contratos.intefaces';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { EmpleadoByID } from '../../interfaces/EmpleadoById.interfaces';
+import { DatumUsuarios, Usuarios } from 'src/app/usuarios/interfaces/usuario.interfaces';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-agregar',
@@ -23,6 +25,9 @@ export class AgregarComponent implements OnInit, AfterViewInit {
   cargos: DatumCargos[] = [];
   direcLis: DatumDirec[] = [];
   contratos: DatumCon[] = [];
+   Usuarios:DatumUsuarios[]=[];
+
+
 
   public formulario: FormGroup = new FormGroup({
     edad: new FormControl('', [Validators.required, Validators.min(18)]),
@@ -36,11 +41,10 @@ export class AgregarComponent implements OnInit, AfterViewInit {
     tiposangre: new FormControl('', Validators.required),
     fechanac: new FormControl('', Validators.required),
     departamento: new FormControl('', Validators.required),
-    imagen: new FormControl(null),
     idusuario: new FormControl('', Validators.required),
     iddireccion: new FormControl('', Validators.required),
     idcargo: new FormControl('', Validators.required),
-    idcontrato: new FormControl<DatumCargos | null>(null),
+    idcontrato: new FormControl<DatumCon| null>(null),
   });
 
   public generos = [
@@ -58,7 +62,7 @@ export class AgregarComponent implements OnInit, AfterViewInit {
   constructor(
     private empleadosService: EmpleadosService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router, private http: HttpClient
   ) {}
 
   get currentEmpleado(): EmpleadoList {
@@ -67,27 +71,40 @@ export class AgregarComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.obtenerDatosCargos();
+    this.obtenerDatosDireccion();
+    this.obtenerContratos();
+    this.obtenerUsuarios();
+
+    if (!this.router.url.includes('edit')) return;
+
+      this.activatedRoute.params
+        .pipe(
+          switchMap(({ id }) => this.empleadosService.getEmpleadoById(id))
+        )
+        .subscribe(
+          empleado => {
+            console.log(empleado)
+            if (!empleado) {
+              this.router.navigateByUrl('/list');
+            } else {
+              this.formulario.reset(empleado);
+            }
+          },
+          (error) => {
+            console.error('Error al obtener empleado por ID:', error);
+          }
+        );
 
   }
 
-ngAfterViewInit(){
-  this.obtenerDatosCargos();
-  this.obtenerDatosDireccion();
-  this.obtenerContratos();
 
-  if (!this.router.url.includes('edit')) return;
-  this.activatedRoute.params
-    .pipe(switchMap(({ id }) => this.empleadosService.getEmpleadoById(id)))
-    .subscribe((empleado) => {
-      if (!empleado) {
-        return this.router.navigateByUrl('/');
-      }
-      this.formulario.reset(empleado);
-      return;
-    });
+
+
+ngAfterViewInit(){
+
 
 }
-
 
   private obtenerDatosCargos(): void {
     this.empleadosService.getCargos().subscribe(
@@ -99,6 +116,18 @@ ngAfterViewInit(){
       }
     );
   }
+
+  private obtenerUsuarios(): void {
+    this.empleadosService.getAllUser().subscribe(
+      (usu: Usuarios) => {
+        this.Usuarios = usu.data;
+      },
+      (error: any) => {
+        console.error('Error al obtener los datos de cargos:', error);
+      }
+    );
+  }
+
   private obtenerDatosDireccion(): void {
     this.empleadosService.getDireccion().subscribe(
       (direccion: Direccion) => {
@@ -109,16 +138,18 @@ ngAfterViewInit(){
       }
     );
   }
+
   private obtenerContratos(): void {
     this.empleadosService.getContratos().subscribe(
       (contrato: Contratos) => {
         this.contratos = contrato.data;
       },
       (error: any) => {
-        console.error('Error al obtener los datos de dirección:', error);
+        console.error('Error al obtener los datos de Contratos:', error);
       }
     );
   }
+
 
   enviarFormulario() {
     const empleadoenvio = this.formulario.value as EmpleadoList;
@@ -127,4 +158,6 @@ ngAfterViewInit(){
       console.log(response);
     });
   }
+
+
 }

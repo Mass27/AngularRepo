@@ -11,6 +11,7 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
 import { SharedModule } from '../Shared/shared.module';
 import { EmpleadoPageComponent } from './pages/empleado-page/empleado-page.component';
 import { AgregarCargosComponent } from './pages/agregar-cargos/agregar-cargos.component';
+import { AggDireccionesComponent } from './pages/agg-direcciones/agg-direcciones.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { AgregarCargosComponent } from './pages/agregar-cargos/agregar-cargos.co
     CardComponent,
     SearchBoxComponent,
     EmpleadoPageComponent,
-    AgregarCargosComponent
+    AgregarCargosComponent,
+    AggDireccionesComponent
   ],
   imports: [
     CommonModule,

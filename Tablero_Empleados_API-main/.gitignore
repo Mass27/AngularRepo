@@ -1,5 +1,0 @@
-# dependencies
-node_modules/
-
-#secret ignora el archivo .env
-.env

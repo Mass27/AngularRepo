@@ -15,7 +15,7 @@ export class AgregarCargosComponent implements OnInit {
 public formCargo = new FormGroup({
 idcargo:  new FormControl<number>(0),
 descripcionCargo: new FormControl(''),
-fechaingreso: new FormControl(''),
+
 })
 
 constructor(private empleadosService:EmpleadosService){}

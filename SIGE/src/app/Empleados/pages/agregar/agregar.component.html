@@ -4,8 +4,8 @@
       <div class="grid grid-cols-2 gap-4">
         <!-- Campo Identidad -->
         <div>
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="identidad">Identidad</label>
-          <input formControlName="identidad" type="text" id="identidad" placeholder="Identidad" class="input-field" />
+          <label class="block text-gray-700 text-sm font-bold mb-2">Identidad</label>
+          <input formControlName="identidad" type="text" placeholder="Identidad" class="input-field" />
         </div>
 
         <!-- Campo Nombre Completo -->
@@ -62,8 +62,10 @@
 
         <!-- Campo ID Usuario -->
         <div>
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="idUsuario">ID Usuario</label>
-          <input formControlName="idusuario" type="number" id="idUsuario" placeholder="ID Usuario" class="input-field" />
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="users">Usuarios</label>
+          <select formControlName="idusuario" id="users" class="input-field">
+            <option *ngFor="let usu of Usuarios" [value]="usu.id">{{usu.usuario}}</option>
+          </select>
         </div>
 
         <!-- Campo Dirección -->
@@ -81,6 +83,7 @@
             <option *ngFor="let cargo of cargos" [value]="cargo.idcargo">{{ cargo.descripcionCargo }}</option>
           </select>
         </div>
+
 
         <!-- Campo Contrato -->
         <div>
@@ -100,3 +103,5 @@
     <p *ngIf="respuestaServidor" class="text-center text-green-500 mt-4">{{ respuestaServidor }}</p>
   </div>
 </div>
+
+

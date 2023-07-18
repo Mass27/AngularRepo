@@ -28,7 +28,12 @@ ngOnInit(): void {
   });
 
 }
+
+
 obtenerDireccion(idDireccion: number): DatumDirec | undefined {
   return this.direcciones.find(d => d.id === idDireccion);
 }
+
+
+
 }
