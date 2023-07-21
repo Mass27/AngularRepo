@@ -1,11 +1,13 @@
 <div class="flex justify-center mt-8">
-  <div class="max-w-md w-full">
-    <form [formGroup]="formulario" class="bg-white shadow-lg rounded-lg p-6 transform transition duration-300 ease-in-out hover:shadow-2xl">
+  <div class="max-w-2xl w-full">
+    <form [formGroup]="formulario" class="bg-white shadow-lg rounded-lg p-6 space-y-6">
+
+      <!-- Primera fila de campos -->
       <div class="grid grid-cols-2 gap-4">
         <!-- Campo Identidad -->
         <div>
           <label class="block text-gray-700 text-sm font-bold mb-2">Identidad</label>
-          <input formControlName="identidad" type="text" placeholder="Identidad" class="input-field" />
+          <input formControlName="identidad" type="text" placeholder="Identidad" class="input-field w-full" />
         </div>
 
         <!-- Campo Nombre Completo -->
@@ -13,7 +15,10 @@
           <label class="block text-gray-700 text-sm font-bold mb-2" for="nombreCompleto">Nombre Completo</label>
           <input formControlName="nombrecompleto" type="text" id="nombreCompleto" placeholder="Nombre Completo" class="input-field" />
         </div>
+      </div>
 
+      <!-- Segunda fila de campos -->
+      <div class="grid grid-cols-2 gap-4">
         <!-- Campo Correo -->
         <div>
           <label class="block text-gray-700 text-sm font-bold mb-2" for="correo">Correo</label>
@@ -27,7 +32,10 @@
             <option *ngFor="let item of generos" [value]="item.desc">{{ item.desc }}</option>
           </select>
         </div>
+      </div>
 
+      <!-- Tercera fila de campos -->
+      <div class="grid grid-cols-2 gap-4">
         <!-- Campo Estado Civil -->
         <div>
           <label class="block text-gray-700 text-sm font-bold mb-2" for="estadoCivil">Estado Civil</label>
@@ -41,7 +49,10 @@
           <label class="block text-gray-700 text-sm font-bold mb-2" for="telefono">Teléfono</label>
           <input formControlName="telefono" type="tel" id="telefono" placeholder="Teléfono" class="input-field" />
         </div>
+      </div>
 
+      <!-- Cuarta fila de campos -->
+      <div class="grid grid-cols-2 gap-4">
         <!-- Campo Departamento -->
         <div>
           <label class="block text-gray-700 text-sm font-bold mb-2" for="departamento">Departamento</label>
@@ -53,7 +64,10 @@
           <label class="block text-gray-700 text-sm font-bold mb-2" for="tipoSangre">Tipo de Sangre</label>
           <input formControlName="tiposangre" type="text" id="tipoSangre" placeholder="Tipo de Sangre" class="input-field" />
         </div>
+      </div>
 
+      <!-- Quinta fila de campos -->
+      <div class="grid grid-cols-2 gap-4">
         <!-- Campo Fecha de Nacimiento -->
         <div>
           <label class="block text-gray-700 text-sm font-bold mb-2" for="fechaNacimiento">Fecha de Nacimiento</label>
@@ -67,7 +81,10 @@
             <option *ngFor="let usu of Usuarios" [value]="usu.id">{{usu.usuario}}</option>
           </select>
         </div>
+      </div>
 
+      <!-- Sexta fila de campos -->
+      <div class="grid grid-cols-2 gap-4">
         <!-- Campo Dirección -->
         <div>
           <label class="block text-gray-700 text-sm font-bold mb-2" for="direccion">Dirección</label>
@@ -83,8 +100,10 @@
             <option *ngFor="let cargo of cargos" [value]="cargo.idcargo">{{ cargo.descripcionCargo }}</option>
           </select>
         </div>
+      </div>
 
-
+      <!-- Séptima fila de campos -->
+      <div class="grid grid-cols-2 gap-4">
         <!-- Campo Contrato -->
         <div>
           <label class="block text-gray-700 text-sm font-bold mb-2" for="contrato">Contrato</label>
@@ -95,13 +114,44 @@
       </div>
 
       <!-- Botón Guardar -->
-      <div class="text-center mt-6">
-        <button (click)="enviarFormulario()" type="submit" class="button-primary ">Guardar</button>
+      <div class="text-center">
+        <button *ngIf="isAdmin" (click)="enviarFormulario()" type="submit" class="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg focus:outline-none">Guardar</button>
       </div>
-    </form>
 
-    <p *ngIf="respuestaServidor" class="text-center text-green-500 mt-4">{{ respuestaServidor }}</p>
+  <!-- Mostrar errores -->
+  <div *ngIf="errores.length > 0" class="errores">
+    <ul>
+      <li *ngFor="let error of errores">{{ error }}</li>
+    </ul>
+  </div>
+
+  <!-- Mostrar respuesta del servidor -->
+  <div *ngIf="respuestaServidor" class="respuesta-servidor">
+    {{ respuestaServidor }}
+  </div>
+
+
+
+    </form>
   </div>
 </div>
 
 
+<div *ngIf="isEditMode" class="flex justify-center mt-8 space-y-6">
+  <div class="max-w-2xl w-full bg-white shadow-lg rounded-lg p-6 space-y-4">
+    <div *ngIf="empleadoImagen" class="flex justify-center">
+      <img [src]="empleadoImagen" alt="Imagen del empleado" class="max-w-full h-auto" style="max-height: 300px;" />
+    </div>
+    <form [formGroup]="imgForm" (ngSubmit)="uploadImageByEmpleadoId(formulario.get('idempleado')?.value)" class="space-y-4">
+      <!-- <div class="flex justify-center">
+        <label for="imagen" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg">
+          Seleccionar imagen
+        </label>
+        <input type="file" id="imagen" formControlName="imagen" accept="image/*" class="hidden" />
+      </div> -->
+      <button *ngIf="isAdmin" type="submit" [disabled]="empleadoImagen" class="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg focus:outline-none">
+        Subir Imagen
+      </button>
+    </form>
+  </div>
+</div>

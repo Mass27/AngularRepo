@@ -2,16 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutMainComponent } from './layout-main/layout-main.component';
 import { RouterModule } from '@angular/router';
+import { SearchboxComponent } from '../Empleados/components/searchbox/searchbox.component';
+import { FormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
-    LayoutMainComponent
+    LayoutMainComponent,
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],exports:[
 
     LayoutMainComponent

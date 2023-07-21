@@ -10,14 +10,23 @@ import { Cargos, DatumCargos } from '../../interfaces/cargos.interfaces';
 import { DatumDirec, Direccion } from '../../interfaces/direccion.interface';
 import { Contratos, DatumCon } from '../../interfaces/contratos.intefaces';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs';
-import { EmpleadoByID } from '../../interfaces/EmpleadoById.interfaces';
-import { DatumUsuarios, Usuarios } from 'src/app/usuarios/interfaces/usuario.interfaces';
+import { of, switchMap } from 'rxjs';
+import {
+  DataById,
+  EmpleadoByID,
+} from '../../interfaces/EmpleadoById.interfaces';
+import {
+  DatumUsuarios,
+  Usuarios,
+} from 'src/app/usuarios/interfaces/usuario.interfaces';
 import { HttpClient } from '@angular/common/http';
 
+
 @Component({
+
   selector: 'app-agregar',
   templateUrl: './agregar.component.html',
+
 })
 export class AgregarComponent implements OnInit, AfterViewInit {
   empleadoList?: EmpleadoByID;
@@ -25,12 +34,13 @@ export class AgregarComponent implements OnInit, AfterViewInit {
   cargos: DatumCargos[] = [];
   direcLis: DatumDirec[] = [];
   contratos: DatumCon[] = [];
-   Usuarios:DatumUsuarios[]=[];
-
-
+  Usuarios: DatumUsuarios[] = [];
+  empleadoImagen: string | null = null;
+  isEditMode: boolean = false;
+  public errores: string[] = [];
+  isAdmin: boolean = false;
 
   public formulario: FormGroup = new FormGroup({
-    edad: new FormControl('', [Validators.required, Validators.min(18)]),
     idempleado: new FormControl('', Validators.required),
     identidad: new FormControl('', Validators.required),
     nombrecompleto: new FormControl('', Validators.required),
@@ -44,7 +54,11 @@ export class AgregarComponent implements OnInit, AfterViewInit {
     idusuario: new FormControl('', Validators.required),
     iddireccion: new FormControl('', Validators.required),
     idcargo: new FormControl('', Validators.required),
-    idcontrato: new FormControl<DatumCon| null>(null),
+    idcontrato: new FormControl<DatumCon | null>(null),
+  });
+
+  public imgForm: FormGroup = new FormGroup({
+    imagen: new FormControl('', Validators.required),
   });
 
   public generos = [
@@ -62,7 +76,8 @@ export class AgregarComponent implements OnInit, AfterViewInit {
   constructor(
     private empleadosService: EmpleadosService,
     private activatedRoute: ActivatedRoute,
-    private router: Router, private http: HttpClient
+    private router: Router,
+    private http:HttpClient
   ) {}
 
   get currentEmpleado(): EmpleadoList {
@@ -75,36 +90,46 @@ export class AgregarComponent implements OnInit, AfterViewInit {
     this.obtenerDatosDireccion();
     this.obtenerContratos();
     this.obtenerUsuarios();
+    this.obtenerEmpleadoPorId();
 
-    if (!this.router.url.includes('edit')) return;
-
-      this.activatedRoute.params
-        .pipe(
-          switchMap(({ id }) => this.empleadosService.getEmpleadoById(id))
-        )
-        .subscribe(
-          empleado => {
-            console.log(empleado)
-            if (!empleado) {
-              this.router.navigateByUrl('/list');
-            } else {
-              this.formulario.reset(empleado);
-            }
-          },
-          (error) => {
-            console.error('Error al obtener empleado por ID:', error);
-          }
-        );
-
+    const usuarioLogin = sessionStorage.getItem('usuarioLogin');
+    this.isAdmin = usuarioLogin === 'Administrador';
   }
 
+  ngAfterViewInit() {}
 
+  enviarFormulario():void {
 
+    this.errores = []; // Limpiamos los errores para cada envío
 
-ngAfterViewInit(){
+    if (this.formulario.invalid) {
+      this.respuestaServidor = 'Por favor, completa todos los campos requeridos.';
+      return;
+    }
 
-
-}
+      if (this.currentEmpleado.idempleado) {
+        this.empleadosService.updateEmpleado(this.currentEmpleado).subscribe(
+          (empleadoActualizado) => {
+            this.respuestaServidor = 'El empleado se ha actualizado exitosamente.';
+            console.log('Empleado actualizado:', empleadoActualizado);
+            this.router.navigateByUrl('/empleados'); // Redirige al listado de empleados
+          },
+          (error: any) => {
+            console.error('Error al actualizar el empleado:', error);
+          });
+        return;
+      }
+        this.empleadosService.addEmpleados(this.currentEmpleado).subscribe(
+          (nuevoEmpleado) => {
+            this.respuestaServidor = 'El empleado se ha guardado exitosamente.';
+            console.log('Nuevo empleado creado:', nuevoEmpleado);
+            this.formulario.reset();
+          },
+          (error: any) => {
+             this.respuestaServidor = 'El empleado no se ha guardado exitosamente.';
+            console.error('Error al guardar el empleado:', error);
+          });
+  }
 
   private obtenerDatosCargos(): void {
     this.empleadosService.getCargos().subscribe(
@@ -150,14 +175,84 @@ ngAfterViewInit(){
     );
   }
 
+  obtenerEmpleadoPorId() {
+    this.activatedRoute.paramMap
+      .pipe(
+        switchMap((params) => {
+          const id = params.get('id');
+          this.isEditMode = params.has('id');
+          if (id) {
+            return this.empleadosService.getEmpleadoById(+id);
+            // Parseamos el ID a number
+          } else {
+            // Manejar el caso en que no se proporcione un ID válido
+            return of(null);
+          }
+        })
+      )
+      .subscribe(
+        (response: EmpleadoByID | null) => {
+          if (response && response.data) {
+            const data: DataById = response.data;
+            const empleado: EmpleadoList = {
+              edad: data.edad,
+              idempleado: data.idempleado,
+              identidad: data.identidad,
+              nombrecompleto: data.nombrecompleto,
+              correo: data.correo,
+              genero: data.genero,
+              estcivil: data.estcivil,
+              telefono: data.telefono,
+              tiposangre: data.tiposangre,
+              fechanac: data.fechanac,
+              departamento: data.departamento,
+              idusuario: data.idusuario,
+              iddireccion: data.iddireccion,
+              idcargo: data.idcargo,
+              idcontrato: data.idcontrato,
+              imagen: data.imagen !== null ? data.imagen : '', // Asegurar que imagen sea string
+            };
+            this.formulario.patchValue(empleado);
 
-  enviarFormulario() {
-    const empleadoenvio = this.formulario.value as EmpleadoList;
-    this.empleadosService.addEmpleados(empleadoenvio).subscribe((response) => {
-      this.respuestaServidor = 'El empleado se ha guardado exitosamente.';
-      console.log(response);
-    });
+            // Actualiza la propiedad para mostrar la imagen del empleado
+            this.empleadoImagen = empleado.imagen;
+          }
+        },
+        (error: any) => {
+          console.error('Error al obtener el empleado por ID:', error);
+        }
+      );
   }
 
+
+  async uploadImageByEmpleadoId(idEmpleado: number) {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+
+    fileInput.onchange = async (event) => {
+      const file = (event.target as HTMLInputElement).files?.[0];
+      if (file) {
+        try {
+          this.formulario.get('idempleado')?.setValue(idEmpleado);
+
+          const response = await this.empleadosService.uploadImage(idEmpleado, file).toPromise();
+          console.log(response);
+
+          // Actualizar la imagen del empleado solo si se selecciona un archivo
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            this.empleadoImagen = e.target?.result as string;
+          };
+          reader.readAsDataURL(file);
+
+        } catch (error) {
+          console.error('Error al cargar la imagen:', error);
+        }
+      }
+    };
+
+    fileInput.click();
+  }
 
 }

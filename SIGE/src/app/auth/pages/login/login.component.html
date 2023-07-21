@@ -1,14 +1,33 @@
-<form (ngSubmit)="onSubmit()">
-  <div class="mb-4">
-    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Usuario</label>
-    <input type="text" id="username" name="username" class="input-field" placeholder="Nombre de usuario" [(ngModel)]="username">
-  </div>
-  <div class="mb-6">
-    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Contraseña</label>
-    <input type="password" id="password" name="password" class="input-field" placeholder="Contraseña" [(ngModel)]="password">
-  </div>
-  <div class="flex items-center justify-center">
-    <button (click)="onSubmit()" type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-200"
-   >Iniciar sesión</button>
-  </div>
-</form>
+
+
+
+<div class="gridPrincipal">
+      <div class="backcolor">
+        <img src="assets/MUNICIPALIDAD.gif"/>
+      </div>
+
+    <div class="gridLogin">
+      <div class="gridEscudo">
+        <img src="assets/Escudo.png" class="imgEscudoM"/>
+      </div>
+      <div class="gridFormulario">
+        <form (ngSubmit)="onSubmit()">
+          <div class="">
+            <input type="text" id="username" name="username" [(ngModel)]="username" placeholder="Usuario *"
+                  class="txtLogin">
+          </div>
+          <div class="">
+            <input type="password" id="password" name="password" [(ngModel)]="password" placeholder="Contraseña *"
+                  class="txtLogin">
+          </div>
+          <div class="">
+            <button type="submit"
+                    class="btnLogin">
+              Iniciar sesión
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+</div>

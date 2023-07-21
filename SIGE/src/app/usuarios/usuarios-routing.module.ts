@@ -17,6 +17,10 @@ const routes: Routes = [
       },{
         path:'agregar',
         component:AgregarComponent
+      }
+      ,{
+        path:'edit/:id',
+        component:AgregarComponent
       },
       {
         path:'**',
