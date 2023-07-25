@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { EmpleadoList } from '../interfaces/empleados.interface';
@@ -75,17 +75,15 @@ getEmpleadoById(id: number): Observable<EmpleadoByID> {
     }
 
 
-
     uploadImage(idEmpleado: number, imageFile: File) {
-      const headers = {
-        Accept: '*/*',
-        'User-Agent': 'Thunder Client (https://www.thunderclient.com)'
-      };
-
       const formData = new FormData();
       formData.append('idempleado', idEmpleado.toString());
       formData.append('img', imageFile);
 
+      const headers = new HttpHeaders({ 'Accept': '*/*' });
+      // Puedes omitir el encabezado "Accept" si no es necesario.
+
       return this.httpClient.post(`${this.baseUrl}/empleados/cargarimagen`, formData, { headers, responseType: 'text' });
     }
+
 }

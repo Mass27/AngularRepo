@@ -32,6 +32,6 @@ export class LayoutMainComponent implements OnInit{
 
   ngOnInit(): void {
     const usuarioLogin = sessionStorage.getItem('usuarioLogin');
-    this.isAdmin = usuarioLogin === 'Administrador';
+    this.isAdmin = usuarioLogin === 'Bienvenido Administrador';
   }
 }

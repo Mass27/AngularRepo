@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { EmpleadoByID } from 'src/app/Empleados/interfaces/EmpleadoById.interfaces';
 import { EmpleadosService } from 'src/app/Empleados/services/empleados.service';
 import { EmpleadoList } from '../../interfaces/empleados.interface';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-searchbox',
@@ -14,13 +16,17 @@ export class SearchboxComponent implements OnInit {
   nombreBusqueda: string = '';
   sugerencias: EmpleadoList[] = [];
 
-  constructor(private empleadoService: EmpleadosService, private router: Router) {}
+  constructor(private empleadoService: EmpleadosService, private router: Router,) {}
 
   ngOnInit(): void {
-    this.empleadoService.getAllEmpleados().subscribe(empleado => {
-      console.log(empleado); // Verifica que la respuesta sea un array de empleados
-      this.empleados = empleado;
-    });
+
+
+     this.empleadoService.getAllEmpleados().subscribe(empleado => {
+    console.log(empleado);
+    this.empleados = empleado;
+  });
+
+
   }
 
   buscarEmpleadosPorNombre() {
@@ -41,4 +47,5 @@ export class SearchboxComponent implements OnInit {
     // Redirigir al usuario a la página de edición del empleado seleccionado
     this.router.navigate(['empleados/edit', empleado.idempleado]);
   }
+
 }

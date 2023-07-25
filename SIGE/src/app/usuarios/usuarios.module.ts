@@ -7,6 +7,7 @@ import { AgregarComponent } from './pages/agregar/agregar.component';
 import { SharedModule } from '../Shared/shared.module';
 import { LayoutUsuariosComponent } from './pages/layout-usuarios/layout-usuarios.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchBoxComponent } from './components/search-box/search-box.component';
 
 
 
@@ -14,7 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     ListUsuariosComponent,
     AgregarComponent,
-    LayoutUsuariosComponent
+    LayoutUsuariosComponent,
+    SearchBoxComponent
   ],
   imports: [
     CommonModule,

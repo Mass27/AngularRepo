@@ -93,7 +93,7 @@ export class AgregarComponent implements OnInit, AfterViewInit {
     this.obtenerEmpleadoPorId();
 
     const usuarioLogin = sessionStorage.getItem('usuarioLogin');
-    this.isAdmin = usuarioLogin === 'Administrador';
+    this.isAdmin = usuarioLogin === 'Bienvenido Administrador';
   }
 
   ngAfterViewInit() {}
@@ -102,10 +102,10 @@ export class AgregarComponent implements OnInit, AfterViewInit {
 
     this.errores = []; // Limpiamos los errores para cada envío
 
-    if (this.formulario.invalid) {
-      this.respuestaServidor = 'Por favor, completa todos los campos requeridos.';
-      return;
-    }
+    // if (this.formulario.invalid) {
+    //   this.respuestaServidor = 'Por favor, completa todos los campos requeridos.';
+    //   return;
+    // }
 
       if (this.currentEmpleado.idempleado) {
         this.empleadosService.updateEmpleado(this.currentEmpleado).subscribe(
@@ -230,29 +230,32 @@ export class AgregarComponent implements OnInit, AfterViewInit {
     fileInput.type = 'file';
     fileInput.accept = 'image/*';
 
-    fileInput.onchange = async (event) => {
-      const file = (event.target as HTMLInputElement).files?.[0];
-      if (file) {
-        try {
-          this.formulario.get('idempleado')?.setValue(idEmpleado);
+    const file = await new Promise<File | undefined>((resolve) => {
+      fileInput.onchange = (event) => {
+        const file = (event.target as HTMLInputElement).files?.[0];
+        resolve(file);
+      };
+      fileInput.click();
+    });
 
-          const response = await this.empleadosService.uploadImage(idEmpleado, file).toPromise();
-          console.log(response);
+    if (file) {
+      try {
+        this.formulario.get('idempleado')?.setValue(idEmpleado);
 
-          // Actualizar la imagen del empleado solo si se selecciona un archivo
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            this.empleadoImagen = e.target?.result as string;
-          };
-          reader.readAsDataURL(file);
+        const response = await this.empleadosService.uploadImage(idEmpleado, file).toPromise();
+        console.log(response);
 
-        } catch (error) {
-          console.error('Error al cargar la imagen:', error);
-        }
+        // Actualizar la imagen del empleado solo si se selecciona un archivo
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.empleadoImagen = e.target?.result as string;
+        };
+        reader.readAsDataURL(file);
+
+      } catch (error) {
+        console.error('Error al cargar la imagen:', error);
       }
-    };
-
-    fileInput.click();
+    }
   }
 
 }

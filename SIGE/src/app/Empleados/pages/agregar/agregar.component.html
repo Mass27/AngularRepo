@@ -149,7 +149,7 @@
         </label>
         <input type="file" id="imagen" formControlName="imagen" accept="image/*" class="hidden" />
       </div> -->
-      <button *ngIf="isAdmin" type="submit" [disabled]="empleadoImagen" class="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg focus:outline-none">
+      <button *ngIf="isAdmin" type="button" (click)="uploadImageByEmpleadoId(formulario.get('idempleado')?.value)" class="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg focus:outline-none">
         Subir Imagen
       </button>
     </form>
