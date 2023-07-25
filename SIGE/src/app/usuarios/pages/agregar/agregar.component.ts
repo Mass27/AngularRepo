@@ -15,7 +15,7 @@ export class AgregarComponent implements OnInit {
   respuestaServidor: string = '';
   isEditMode: boolean = false;
   public errores: string[] = [];
-  isAdmin: boolean = false;
+  // isAdmin: boolean = false;
 
 
   public formulario: FormGroup = new FormGroup({
@@ -35,8 +35,8 @@ export class AgregarComponent implements OnInit {
             }
   ngOnInit(): void {
 this.obtenerUserId();
-const usuarioLogin = sessionStorage.getItem('usuarioLogin');
-this.isAdmin = usuarioLogin === 'Bienvenido Administrador';
+// const usuarioLogin = sessionStorage.getItem('usuarioLogin');
+// this.isAdmin = usuarioLogin === 'Bienvenido Administrador';
   }
 
   enviarFormulario() {

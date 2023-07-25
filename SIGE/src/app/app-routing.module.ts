@@ -13,7 +13,7 @@ const routes: Routes = [
 
   {
     path: 'empleados',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     loadChildren: () =>
       import('./Empleados/empleados.module').then((em) => em.EmpleadosModule),
   },

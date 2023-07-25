@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./layout-header.css']
 })
 export class LayoutMainComponent implements OnInit{
-  isAdmin: boolean = false;
+  // isAdmin: boolean = false;
 
   constructor(  private router: Router){}
   isMenuOpen: boolean = false;
@@ -31,7 +31,7 @@ export class LayoutMainComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    const usuarioLogin = sessionStorage.getItem('usuarioLogin');
-    this.isAdmin = usuarioLogin === 'Bienvenido Administrador';
+    // const usuarioLogin = sessionStorage.getItem('usuarioLogin');
+    // this.isAdmin = usuarioLogin === 'Bienvenido Administrador';
   }
 }

@@ -25,7 +25,7 @@
     </div>
 
     <!-- Muestra otros datos del empleado según la estructura de la interfaz -->
-    <button *ngIf="isAdmin" [routerLink]="['/empleados/edit',empleado.idempleado]" class="mt-4 bg-red-700 text-white py-2 px-4 rounded-lg hover:bg-red-800 transition-colors duration-300 ease-in-out">
+    <button [routerLink]="['/empleados/edit',empleado.idempleado]" class="mt-4 bg-red-700 text-white py-2 px-4 rounded-lg hover:bg-red-800 transition-colors duration-300 ease-in-out">
      Editar
     </button>
   </div>

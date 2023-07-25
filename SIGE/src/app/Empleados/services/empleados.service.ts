@@ -8,6 +8,7 @@ import { DatumDirec, Direccion } from '../interfaces/direccion.interface';
 import { Contratos } from '../interfaces/contratos.intefaces';
 import { EmpleadoByID } from '../interfaces/EmpleadoById.interfaces';
 import { Usuarios } from 'src/app/usuarios/interfaces/usuario.interfaces';
+import { Gerencias } from '../interfaces/gerencias.interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class EmpleadosService {
@@ -39,8 +40,8 @@ addImg(imagen:string){
 }
 
 
-addEmpleados(empleado: EmpleadoList): Observable<EmpleadoList> {
-  return this.httpClient.post<EmpleadoList>(
+addEmpleados(empleado: EmpleadoList): Observable<EmpleadoByID> {
+  return this.httpClient.post<EmpleadoByID>(
     `${this.baseUrl}/empleados/guardar`,
     empleado
   );
@@ -66,6 +67,12 @@ getEmpleadoById(id: number): Observable<EmpleadoByID> {
   getDireccion(): Observable<Direccion> {
     return this.httpClient.get<Direccion>(`${this.baseUrl}/direccion/listar`);
   }
+
+getGerencias(): Observable<Gerencias>{
+
+  return this.httpClient.get<Gerencias>(`${this.baseUrl}/gerencias/Listar`)
+}
+
 
   getContratos(): Observable<Contratos> {
     return this.httpClient.get<Contratos>(`${this.baseUrl}/contratos/listar`);
