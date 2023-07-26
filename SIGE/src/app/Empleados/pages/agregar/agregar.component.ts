@@ -8,6 +8,8 @@ import {
   genero,
 } from '../../interfaces/empleados.interface';
 import { Cargos, DatumCargos } from '../../interfaces/cargos.interfaces';
+import { structImagebyId } from '../../interfaces/idEmployee.interfaces';
+
 import { DatumDirec, Direccion } from '../../interfaces/direccion.interface';
 import { Contratos, DatumCon } from '../../interfaces/contratos.intefaces';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -39,6 +41,7 @@ export class AgregarComponent implements OnInit {
   // isEditMode: boolean = false;
   public errores: string[] = [];
   // isAdmin: boolean = false;
+  imgFile: File | null = null;
 
   public formulario: FormGroup = new FormGroup({
     idempleado: new FormControl('', Validators.required),
@@ -75,6 +78,8 @@ export class AgregarComponent implements OnInit {
     { id: 'Viudo', desc: 'Viudo' },
   ];
 
+
+
   constructor(
     private empleadosService: EmpleadosService,
     private activatedRoute: ActivatedRoute,
@@ -94,50 +99,40 @@ export class AgregarComponent implements OnInit {
     this.obtenerDatosGerencias();
     this.obtenerUsuarios();
     this.obtenerEmpleadoPorId();
-
-    // const usuarioLogin = sessionStorage.getItem('usuarioLogin');
-    // this.isAdmin = usuarioLogin === 'Bienvenido Administrador';
   }
 
-
-
-  enviarFormulario(): number {
+  async enviarFormulario(): Promise<structImagebyId> {
     this.errores = []; // Limpiamos los errores para cada envío
 
-    if (this.currentEmpleado.idempleado) {
-      this.empleadosService.updateEmpleado(this.currentEmpleado).subscribe(
-        (empleadoActualizado) => {
-          this.respuestaServidor =
-            'El empleado se ha actualizado exitosamente.';
-          console.log('Empleado actualizado:', empleadoActualizado);
-          this.router.navigateByUrl('/empleados');
-          console.log(this.currentEmpleado);
-          this.uploadImageByEmpleadoId(empleadoActualizado.idempleado,true,true);
-          return this.currentEmpleado.idempleado; // Redirige al listado de empleados
-        },
-        (error: any) => {
-          console.error('Error al actualizar el empleado:', error);
-        }
-      );
-      return -1;
-    }
-    this.empleadosService.addEmpleados(this.currentEmpleado).subscribe(
-      (nuevoEmpleado) => {
+    try {
+      if (this.currentEmpleado.idempleado) {
+        const empleadoActualizado = await this.empleadosService.updateEmpleado(this.currentEmpleado).toPromise();
+        this.respuestaServidor = 'El empleado se ha actualizado exitosamente.';
+        console.log('Empleado actualizado:', empleadoActualizado);
+        // this.router.navigateByUrl('/empleados');
+        console.log(this.currentEmpleado.idempleado);
+        // this.uploadImage(this.currentEmpleado.idempleado, this.imgForm.get('imagen')?.value, true);
+
+        return { id: this.currentEmpleado.idempleado, error: false }; // Redirige al listado de empleados
+      } else {
+        const nuevoEmpleado = await this.empleadosService.addEmpleados(this.currentEmpleado).toPromise();
         this.respuestaServidor = 'El empleado se ha guardado exitosamente.';
         console.log('Nuevo empleado creado:', nuevoEmpleado);
-        console.log(nuevoEmpleado.data.idempleado);
-        this.uploadImageByEmpleadoId(nuevoEmpleado.data.idempleado,true,true);
-        //this.formulario.reset();
-        return nuevoEmpleado.data.idempleado;
-      },
-      (error: any) => {
-        this.respuestaServidor = 'El empleado no se ha guardado exitosamente.';
-        console.error('Error al guardar el empleado:', error);
-        return -1;
+        const nuevoEmpleadoId = nuevoEmpleado?.data?.idempleado;
+        if (nuevoEmpleadoId) {
+          console.log(nuevoEmpleadoId);
+          await this.uploadImage(nuevoEmpleadoId, this.imgForm.get('imagen')?.value, true);
+        } else {
+          console.error('Error: nuevoEmpleado.data.idempleado is null or undefined');
+        }
+        // this.formulario.reset();
+        return { id: nuevoEmpleadoId || -1, error: false };
       }
-    );
-
-    return -1;
+    } catch (error) {
+      this.respuestaServidor = 'Ha ocurrido un error al procesar el empleado.';
+      console.error('Error al procesar el empleado:', error);
+      return { id: -1, error: true };
+    }
   }
 
   private obtenerDatosGerencias(): void {
@@ -246,65 +241,49 @@ export class AgregarComponent implements OnInit {
       );
   }
 
-  async uploadImageByEmpleadoId(idEmpleado: number, save: boolean,openfile:boolean) {
-    if (!save) {
+  // Nueva función para manejar el evento onchange del input de imagen
+  onImageSelected(event: Event) {
+    const fileInput = event.target as HTMLInputElement;
+    if (!fileInput || !fileInput.files) {
+      console.error('Elemento "imagen" no encontrado en el DOM o no se seleccionó un archivo.');
       return;
     }
 
-
-
-    // Mostrar el diálogo de selección de archivo
-    if (openfile) {
-      const fileInput = document.getElementById('imagen') as HTMLInputElement;
-      if (!fileInput) {
-        console.error('Elemento "imagen" no encontrado en el DOM.');
-        return;
-      }
-      fileInput.click();
-      const file = await new Promise<File | undefined>((resolve) => {
-        fileInput.onchange = (event) => {
-          const file = (event.target as HTMLInputElement).files?.[0];
-          resolve(file);
-        };
-      });
-
-      if (file) {
-        try {
-          this.formulario.get('idempleado')?.setValue(idEmpleado);
-
-          const response = await this.empleadosService
-            .uploadImage(idEmpleado, file)
-            .toPromise();
-          console.log(response);
-
-          // Actualizar la imagen del empleado solo si se selecciona un archivo
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            this.empleadoImagen = e.target?.result as string;
-          };
-          reader.readAsDataURL(file);
-        } catch (error) {
-          console.error('Error al cargar la imagen:', error);
-        }
-      }
-
+    this.imgFile  = fileInput.files[0];
+    if (this.imgFile) {
+      this.formulario.get('idempleado')?.setValue(this.currentEmpleado.idempleado);
+      this.uploadImage(this.currentEmpleado.idempleado, this.imgFile, false);
     }
-
-
-    // Esperar a que el usuario seleccione una imagen
-
   }
 
+  // Nueva función para realizar la subida de la imagen
+  async uploadImage(idEmpleado: number, file: File, saveImage: boolean | undefined) {
+    try {
+      console.log(saveImage);
 
 
+  const response = await this.empleadosService.uploadImage(idEmpleado, file).toPromise();
+  console.log(response);
+
+      // Actualizar la imagen del empleado solo si se selecciona un archivo
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.empleadoImagen = e.target?.result as string;
+      };
+      reader.readAsDataURL(file);
+    } catch (error) {
+      console.error('Error al cargar la imagen:', error);
+    }
+  }
 
   async aggEmpleado() {
     const idEm = await this.enviarFormulario();
 
-    console.log(idEm);
-    if (idEm != -1) {
-     this.uploadImageByEmpleadoId(idEm,true,false);
-
+    console.log(idEm, this.imgFile);
+//fix using interface
+    if (idEm !== -1 && this.imgFile) {
+      this.uploadImage(idEm, this.imgFile, true);
     }
   }
+
 }

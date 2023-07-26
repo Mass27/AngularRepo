@@ -258,6 +258,7 @@
     </form>
   </div>
 </div>
+<!-- Código HTML anterior -->
 
 <div class="flex justify-center mt-8 space-y-6">
   <div class="max-w-2xl w-full bg-white shadow-lg rounded-lg p-6 space-y-4">
@@ -271,21 +272,14 @@
     </div>
     <form
       [formGroup]="imgForm"
-      (ngSubmit)="uploadImageByEmpleadoId(formulario.get('idempleado')?.value,false,true)"
       class="space-y-4"
     >
-      <div class="flex justify-center" >
+      <div class="flex justify-center">
         <label for="imagen" class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg">
           Seleccionar imagen
         </label>
-        <input type="file" id="imagen" formControlName="imagen" accept="image/*" class="hidden" />
+        <input type="file" id="imagen" formControlName="imagen" accept="image/*" class="hidden" (change)="onImageSelected($event)" />
       </div>
-      <!-- <button
-        type="button"
-        class="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg focus:outline-none"
-      >
-        Subir Imagen
-      </button> -->
     </form>
   </div>
 </div>

@@ -52,8 +52,8 @@ getEmpleadoById(id: number): Observable<EmpleadoByID> {
 }
 
 
-  updateEmpleado(empleado: EmpleadoList): Observable<EmpleadoList> {
-    return this.httpClient.put<EmpleadoList>(
+  updateEmpleado(empleado: EmpleadoList): Observable<EmpleadoByID> {
+    return this.httpClient.put<EmpleadoByID>(
       `${this.baseUrl}/empleados/editar?id=${empleado.idempleado}`,
       empleado
     );

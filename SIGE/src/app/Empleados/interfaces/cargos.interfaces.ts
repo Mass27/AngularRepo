@@ -10,3 +10,5 @@ export interface DatumCargos {
   idcargo:          number;
   descripcionCargo: string;
 }
+
+
