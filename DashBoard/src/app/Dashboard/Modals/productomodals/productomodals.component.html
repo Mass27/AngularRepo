@@ -1,0 +1,63 @@
+<p>productomodals works!</p>
+<h2 mat-dialog-title>Producto </h2>
+
+<mat-dialog-content>
+    <form>
+        <mat-grid-list cols="1" rowHeight="100px">
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput autocomplete="off" formControlName="nombre">
+                    <mat-icon matSuffix>fit_screen</mat-icon>
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+              <mat-form-field appearance="outline">
+                  <mat-label>Categoria</mat-label>
+                  <mat-select formControlName="idCategoria">
+                      <mat-option >
+
+                      </mat-option>
+                  </mat-select>
+                  <mat-icon matSuffix>account-box</mat-icon>
+              </mat-form-field>
+          </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Stock</mat-label>
+                    <input matInput autocomplete="off" formControlName="stock" type="number">
+                    <mat-icon matSuffix>edit_square</mat-icon>
+                </mat-form-field>
+           </mat-grid-tile>
+
+           <mat-grid-tile>
+            <mat-form-field appearance="outline">
+                <mat-label>Precio</mat-label>
+                <input matInput autocomplete="off" formControlName="precio" tpe="number">
+                <mat-icon matSuffix>attach_money</mat-icon>
+            </mat-form-field>
+       </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Estado</mat-label>
+                    <mat-select formControlName="esActivo">
+                        <mat-option value="1">Activo</mat-option>
+                        <mat-option value="0">No Activo</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+
+        </mat-grid-list>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+    <button mat-raised-button color="primary"
+        > Guardar
+    </button>
+</mat-dialog-actions>
+

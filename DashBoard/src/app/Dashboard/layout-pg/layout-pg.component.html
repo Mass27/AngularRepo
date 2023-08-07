@@ -1,0 +1,45 @@
+
+<mat-toolbar style="background-color:#1d2638; color:white;">
+  <mat-toolbar-row>
+    <!-- TODO:COLOCAR IMAGEN -->
+    <!-- <img srcset="../assets/img/isotipoW.png" class="logoHeader"> -->
+    <h1 style="margin-top:1px; margin-left: 10px;">Floristeria</h1>
+    <button mat-icon-button (click)="sidenav.toggle();">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span style="flex: 1 1 auto;"></span>
+    <label style="font-size: 14px; margin-right:20px">
+
+    </label>
+    <button mat-icon-button (click)="cerrarSesion()">
+      <mat-icon>logout</mat-icon>
+    </button>
+
+
+
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav opened="true" mode="side" style="width:220px;">
+    <mat-nav-list>
+      <mat-list-item
+        *ngFor="let item of sidebarItems"
+        [routerLink]="item.url"
+        (click)="sidenav.toggle()"
+      >
+        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+        {{ item.label }}
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div style="height:90vh;">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+

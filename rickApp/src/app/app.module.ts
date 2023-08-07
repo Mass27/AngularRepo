@@ -17,6 +17,7 @@ import { CharacterComponent } from './pages/character/character.component';
 import { SearchComponent } from './pages/search/search.component';
 import { SearchboxComponent } from './components/searchbox/searchbox.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ModalComponent } from './components/modal/modal.component';
     MaterialModule,
     HttpClientModule,
     ReactiveFormsModule,
+    IonicModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

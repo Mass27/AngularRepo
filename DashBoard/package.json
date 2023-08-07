@@ -1,5 +1,5 @@
 {
-  "name": "rick-app",
+  "name": "dash-board",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -11,17 +11,15 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^16.0.0",
-    "@angular/cdk": "^16.1.1",
+    "@angular/cdk": "^16.1.7",
     "@angular/common": "^16.0.0",
     "@angular/compiler": "^16.0.0",
     "@angular/core": "^16.0.0",
     "@angular/forms": "^16.0.0",
-    "@angular/material": "^16.1.1",
+    "@angular/material": "^16.1.7",
     "@angular/platform-browser": "^16.0.0",
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
-    "@ionic/angular": "^7.2.2",
-    "primeflex": "^3.3.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
@@ -37,7 +35,6 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "typescript": "~5.0.2",
-    "@ionic/angular-toolkit": "latest"
+    "typescript": "~5.0.2"
   }
 }
