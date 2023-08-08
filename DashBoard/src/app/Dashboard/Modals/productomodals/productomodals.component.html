@@ -1,63 +1,31 @@
-<p>productomodals works!</p>
-<h2 mat-dialog-title>Producto </h2>
-
-<mat-dialog-content>
-    <form>
-        <mat-grid-list cols="1" rowHeight="100px">
-            <mat-grid-tile>
-                <mat-form-field appearance="outline">
-                    <mat-label>Nombre</mat-label>
-                    <input matInput autocomplete="off" formControlName="nombre">
-                    <mat-icon matSuffix>fit_screen</mat-icon>
-                </mat-form-field>
-            </mat-grid-tile>
-
-            <mat-grid-tile>
-              <mat-form-field appearance="outline">
-                  <mat-label>Categoria</mat-label>
-                  <mat-select formControlName="idCategoria">
-                      <mat-option >
-
-                      </mat-option>
-                  </mat-select>
-                  <mat-icon matSuffix>account-box</mat-icon>
-              </mat-form-field>
-          </mat-grid-tile>
-
-            <mat-grid-tile>
-                <mat-form-field appearance="outline">
-                    <mat-label>Stock</mat-label>
-                    <input matInput autocomplete="off" formControlName="stock" type="number">
-                    <mat-icon matSuffix>edit_square</mat-icon>
-                </mat-form-field>
-           </mat-grid-tile>
-
-           <mat-grid-tile>
-            <mat-form-field appearance="outline">
-                <mat-label>Precio</mat-label>
-                <input matInput autocomplete="off" formControlName="precio" tpe="number">
-                <mat-icon matSuffix>attach_money</mat-icon>
-            </mat-form-field>
-       </mat-grid-tile>
-
-            <mat-grid-tile>
-                <mat-form-field appearance="outline">
-                    <mat-label>Estado</mat-label>
-                    <mat-select formControlName="esActivo">
-                        <mat-option value="1">Activo</mat-option>
-                        <mat-option value="0">No Activo</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </mat-grid-tile>
-
-        </mat-grid-list>
-    </form>
+<mat-dialog-content class="modal-content">
+  <form [formGroup]="productForm" class="product-form">
+    <mat-form-field class="form-field">
+      <input matInput placeholder="Nombre" formControlName="name" required>
+      <mat-error *ngIf="productForm.get('name')?.hasError('required')">El nombre es requerido</mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <textarea matInput placeholder="Descripción" formControlName="description" required></textarea>
+      <mat-error *ngIf="productForm.get('description')?.hasError('required')">La descripción es requerida</mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <input matInput type="number" placeholder="Precio" formControlName="price" required pattern="^\d+(\.\d{1,2})?$">
+      <mat-error *ngIf="productForm.get('price')?.hasError('required')">El precio es requerido</mat-error>
+      <mat-error *ngIf="productForm.get('price')?.hasError('pattern')">Precio inválido</mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <input matInput placeholder="URL de la imagen" formControlName="image" required>
+      <mat-error *ngIf="productForm.get('image')?.hasError('required')">La URL de la imagen es requerida</mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <input matInput type="number" placeholder="ID de Categoría" formControlName="category_id" required>
+      <mat-error *ngIf="productForm.get('category_id')?.hasError('required')">El ID de categoría es requerido</mat-error>
+    </mat-form-field>
+  </form>
 </mat-dialog-content>
-
-<mat-dialog-actions align="end">
-    <button mat-raised-button mat-dialog-close color="warn">Volver</button>
-    <button mat-raised-button color="primary"
-        > Guardar
-    </button>
+<mat-dialog-actions class="modal-actions" align="end">
+  <button mat-button color="primary" (click)="cerrarModal()">Cancelar</button>
+  <button mat-raised-button color="accent" (click)="guardarCambios()" [disabled]="productForm.invalid">
+    {{ productToUpdate ? 'Guardar Cambios' : 'Agregar' }}
+  </button>
 </mat-dialog-actions>
-

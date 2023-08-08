@@ -10,6 +10,8 @@ import { BannersComponent } from './banners/banners.component';
 import { OrdersComponent } from './orders/orders.component';
 import { DashComponent } from './dash/dash.component';
 import { ProductomodalsComponent } from './Modals/productomodals/productomodals.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ConfirmDialogComponent } from './Modals/confirm-dialog/confirm-dialog.component';
 
 
 @NgModule({
@@ -20,12 +22,14 @@ import { ProductomodalsComponent } from './Modals/productomodals/productomodals.
     BannersComponent,
     OrdersComponent,
     DashComponent,
-    ProductomodalsComponent
+    ProductomodalsComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     CommonModule,
     DashRoutingModule,
     MaterialModule,
+    ReactiveFormsModule
 
   ]
 })
