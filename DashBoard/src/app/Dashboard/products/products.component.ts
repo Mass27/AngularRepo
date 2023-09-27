@@ -43,7 +43,7 @@ export class ProductsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((editedProduct: Product | undefined) => {
       if (editedProduct) {
-        const index = this.products.findIndex(p => p.id === editedProduct.id);
+        const index = this.products.findIndex(p => p.Id === editedProduct.Id);
         if (index !== -1) {
           this.products[index] = editedProduct;
         }
@@ -57,16 +57,16 @@ eliminarProducto(product: Product): void {
     width: '400px',
     data: {
       title: 'Eliminar Producto',
-      message: `¿Estás seguro de que quieres eliminar ${product.name}?`
+      message: `¿Estás seguro de que quieres eliminar ${product.Name}?`
     }
   });
 
   dialogRef.afterClosed().subscribe((result: boolean) => {
     if (result) {
-      this.dashService.deleteProduct(product.id).subscribe(
+      this.dashService.deleteProduct(product.Id).subscribe(
         () => {
           // Eliminación exitosa, actualiza la lista de productos
-          this.products = this.products.filter(p => p.id !== product.id);
+          this.products = this.products.filter(p => p.Id !== product.Id);
         },
         (error) => {
           console.error('Error al eliminar el producto:', error);

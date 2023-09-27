@@ -25,12 +25,12 @@ const routes: Routes = [
         component: BannersComponent,
       },
       {
-path:'orders',
-component:OrdersComponent
-
-      },{
-path:'dash',
-component:DashComponent
+        path: 'orders',
+        component: OrdersComponent,
+      },
+      {
+        path: 'dash',
+        component: DashComponent,
       },
       { path: '**', redirectTo: 'products' },
     ],

@@ -1,7 +1,23 @@
-.custom-select {
-  position: relative;
-  display: inline-block;
-  width: 100%;
+/* Anime Page */
+.anime-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Filter Section */
+.filter-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+/* Custom Select */
+.custom-select h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-right: 1rem;
 }
 
 .custom-select select {
@@ -15,6 +31,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   appearance: none;
   outline: none;
+  transition: border-color 0.3s ease-in-out;
 }
 
 .custom-select select:focus {
@@ -22,11 +39,11 @@
   box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
 }
 
+/* Anime Grid */
 .anime-grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 1rem;
-  margin-top: 2rem;
 }
 
 @media (min-width: 768px) {
@@ -49,6 +66,7 @@
   transform: translateY(-5px) scale(1.05);
 }
 
+/* Pagination */
 .pagination {
   display: flex;
   justify-content: center;

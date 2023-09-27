@@ -22,12 +22,12 @@ export class ProductomodalsComponent {
     this.productToUpdate = data.productToUpdate;
 
     this.productForm = this.fb.group({
-      id: [this.productToUpdate?.id || null],
-      name: [this.productToUpdate?.name || '', Validators.required],
-      description: [this.productToUpdate?.description || '', Validators.required],
-      price: [this.productToUpdate?.price || '', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
-      image: [this.productToUpdate?.image || '', Validators.required],
-      category_id: [this.productToUpdate?.category_id || 0, Validators.required]
+      id: [this.productToUpdate?.Id || null],
+      name: [this.productToUpdate?.Name || '', Validators.required],
+      description: [this.productToUpdate?.Description || '', Validators.required],
+      price: [this.productToUpdate?.Price || '', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
+      image: [this.productToUpdate?.Images || '', Validators.required],
+      category_id: [this.productToUpdate?.CategoryIds || 0, Validators.required]
     });
   }
 

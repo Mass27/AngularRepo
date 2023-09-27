@@ -1,58 +1,61 @@
-<div class="bg-white shadow-lg rounded-lg p-6">
-  <div class="mb-4">
-    <h3 class="text-xl font-bold mb-2">Image:</h3>
-    <img
-      class="rounded-lg"
-      [src]="animeInfo?.data?.images?.['jpg']?.image_url"
-      alt="Anime Image"
-    />
-  </div>
-
-  <h2 class="text-3xl font-bold mb-4">{{ animeInfo?.data?.title }}</h2>
-  <p class="text-gray-600 mb-6">{{ animeInfo?.data?.synopsis }}</p>
-
-  <div class="flex items-center mb-4">
-    <span class="font-bold mr-2">Episodes:</span>
-    <span class="text-gray-700">{{ animeInfo?.data?.episodes }}</span>
-  </div>
-
-  <div class="border-t mt-6 pt-4">
-    <h3 class="text-xl font-bold mb-2">Aired:</h3>
-    <p class="text-gray-700">{{ animeInfo?.data?.aired?.string }}</p>
-  </div>
-
-  <h3 class="text-xl font-bold mt-6 mb-2">Genres:</h3>
-  <div class="flex flex-wrap mb-4">
-    <span
-      class="inline-block bg-red-700 text-white px-3 py-1 text-sm font-semibold rounded-full mr-2 mb-2"
-      *ngFor="let genre of animeInfo?.data?.genres"
-    >
-      {{ genre.name }}
-    </span>
-  </div>
-
-  <div *ngIf="animeInfo?.data?.trailer?.youtube_id" class="mb-4">
-    <h3 class="text-xl font-bold mb-2">Trailer:</h3>
-    <div class="aspect-w-16 aspect-h-9">
-      <iframe
-        class="rounded-lg"
-        width="560"
-        height="315"
-        [src]="animeInfo?.safeTrailerUrl"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-      ></iframe>
+<div class="anime-details-container">
+  <div class="anime-details-card">
+    <div class="anime-image">
+      <img [src]="animeInfo?.data?.images?.['jpg']?.image_url" alt="Anime Image" />
     </div>
+
+    <div class="anime-details">
+      <h1 class="anime-title">{{ animeInfo?.data?.title }}</h1>
+      <p class="anime-synopsis">{{ animeInfo?.data?.synopsis }}</p>
+
+      <div class="anime-info-row">
+        <span class="anime-info-label">Episodios:</span>
+        <span class="anime-info-value">{{ animeInfo?.data?.episodes }}</span>
+      </div>
+
+      <div class="anime-info-section">
+        <h2 class="anime-section-title">Fecha de Emisión:</h2>
+        <p class="anime-info-value">{{ animeInfo?.data?.aired?.string }}</p>
+      </div>
+
+      <div class="anime-info-section">
+        <h2 class="anime-section-title">Géneros:</h2>
+        <div class="anime-genres">
+          <span *ngFor="let genre of animeInfo?.data?.genres" class="anime-genre">{{ genre.name }}</span>
+        </div>
+      </div>
+
+      <div *ngIf="animeInfo?.data?.trailer?.youtube_id" class="anime-trailer-section">
+        <h2 class="anime-section-title">Trailer:</h2>
+        <div class="anime-trailer">
+          <iframe
+            [src]="animeInfo?.safeTrailerUrl"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+
+      <div *ngIf="!animeInfo?.data?.trailer?.youtube_id" class="anime-no-trailer-section">
+        <h2 class="anime-section-title">Trailer no disponible.</h2>
+      </div>
+    </div>
+
+    <div class="anime-episodes-section">
+      <h2 class="anime-section-title">Lista de Episodios:</h2>
+      <ul class="anime-episode-list">
+        <li *ngFor="let episode of visibleEpisodes" class="anime-episode">
+          <a href="{{ episode.url }}">
+            <img [src]="episode.images.jpg.image_url" alt="Episode Image" />
+            <p class="episode-title">{{ episode.title }}</p>
+            <p class="episode-number"> {{ episode.episode }}</p>
+          </a>
+        </li>
+      </ul>
+      <button *ngIf="showMoreButton" class="show-more-button" (click)="showMoreEpisodes()">Ver más episodios</button>
+    </div>
+
+    <button class="anime-back-button" (click)="goBack()">Regresar</button>
   </div>
-
-  <div *ngIf="!animeInfo?.data?.trailer?.youtube_id" class="text-xl font-bold mt-6 mb-2">
-    No trailer available.
-  </div>
-
-
-
-  <button class="bg-red-700 text-white py-2 px-4 rounded-lg" (click)="goBack()">
-    Regresar
-  </button>
 </div>

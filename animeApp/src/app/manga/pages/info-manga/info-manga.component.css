@@ -1,0 +1,111 @@
+/* Container Styles */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Flex Styles */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.manga-details {
+  align-items: center; /* Alinear al centro en dispositivos móviles */
+}
+
+/* Manga Image Styles */
+.manga-image {
+  flex: 0 0 250px;
+  margin-bottom: 20px; /* Mayor espaciado en dispositivos móviles */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.manga-image img {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.manga-image:hover {
+  transform: scale(1.05);
+}
+
+/* Manga Info Styles */
+.manga-info {
+  flex: 1;
+  text-align: center; /* Alinear al centro en dispositivos móviles */
+}
+
+.manga-title {
+  font-size: 2rem; /* Tamaño de título más pequeño en móviles */
+  margin-bottom: 1rem;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.manga-subtitle {
+  font-size: 1.25rem; /* Tamaño de subtítulo más pequeño en móviles */
+  margin-bottom: 1rem;
+  color: #ff7f50;
+}
+
+.manga-synopsis {
+  color: #777;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.manga-genre {
+  display: inline-block;
+  background-color: #ff7f50;
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.manga-genre:hover {
+  background-color: #ff934d;
+}
+
+.manga-details-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.manga-details-label {
+  font-weight: bold;
+  margin-bottom: 0.25rem; /* Menor espaciado en dispositivos móviles */
+  color: #ff7f50;
+}
+
+.manga-details-value {
+  color: #333;
+}
+
+/* Action Button Styles */
+.action-button {
+  background-color: #ff7f50;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.action-button:hover {
+  background-color: #ff934d;
+}

@@ -11,26 +11,21 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchboxComponent } from './components/searchbox/searchbox.component';
 import { SharedModule } from '../shared/shared.module';
 
-
-
 @NgModule({
   declarations: [
-LayoutPageComponent,
-ListComponent,
-CardComponent,
-TruncatePipe,
-AnimeInfoComponent,
-SearchboxComponent,
-
-
+    LayoutPageComponent,
+    ListComponent,
+    CardComponent,
+    TruncatePipe,
+    AnimeInfoComponent,
+    SearchboxComponent,
   ],
   imports: [
     CommonModule,
-   AnimeRoutingModule,
-   FormsModule,
-   ReactiveFormsModule,
-SharedModule
-
-  ]
+    AnimeRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule,
+  ],
 })
-export class AnimeModule { }
+export class AnimeModule {}

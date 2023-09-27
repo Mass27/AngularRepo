@@ -4,13 +4,13 @@
     <mat-card class="product-card" *ngFor="let product of products">
       <mat-card-header>
         <div mat-card-avatar class="product-image">
-          <img [src]="product.image" alt="{{ product.name }}">
+          <img [src]="product.Images" alt="{{ product.Name }}">
         </div>
-        <mat-card-title>{{ product.name }}</mat-card-title>
+        <mat-card-title>{{ product.Name }}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p class="product-description">{{ product.description }}</p>
-        <p class="product-price">Precio: {{ product.price }}</p>
+        <p class="product-description">{{ product.Description }}</p>
+        <p class="product-price">Precio: {{ product.Price }}</p>
       </mat-card-content>
       <mat-card-actions>
         <button mat-flat-button color="primary" (click)="editarProducto(product)">

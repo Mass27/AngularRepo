@@ -1,0 +1,149 @@
+/* Contenedor principal */
+.anime-details-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+}
+.anime-section-title {
+  font-size: 24px;
+  color: #333; /* Color de texto */
+  margin-bottom: 10px;
+}
+.anime-trailer{
+  display: flex;
+  justify-content: center;
+}
+/* Tarjeta de detalles del anime */
+.anime-details-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+  text-align: center;
+  background-color: #fff;
+}
+
+/* Imagen del anime */
+.anime-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+.anime-image img:hover {
+  transform: scale(1.05);
+}
+
+/* Título del anime más grande y destacado */
+.anime-title {
+  font-size: 36px;
+  margin: 20px 0;
+  text-align: center;
+  color: #333;
+}
+
+/* Sinopsis del anime */
+.anime-synopsis {
+  font-size: 18px;
+  margin: 10px 0;
+  text-align: justify;
+  color: #555;
+}
+
+/* Etiquetas de información */
+.anime-info-label {
+  font-weight: bold;
+}
+
+/* Géneros */
+.anime-genres {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.anime-genre {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+/* Sección de episodios */
+.anime-episodes-section {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Lista de episodios */
+.anime-episode-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.anime-episode {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.anime-episode img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.anime-episode:hover {
+  transform: scale(1.05);
+}
+
+/* Botón "Ver más episodios" más llamativo */
+.show-more-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.2s ease-in-out;
+  margin-top: 20px;
+}
+
+.show-more-button:hover {
+  background-color: #0056b3;
+}
+
+/* Botón de regreso */
+.anime-back-button {
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.2s ease-in-out;
+  margin-top: 20px;
+}
+
+.anime-back-button:hover {
+  background-color: #999;
+}

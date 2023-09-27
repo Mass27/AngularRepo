@@ -5,6 +5,8 @@ import { Anime } from '../interfaces/anime.interfaces';
 import { environment } from '../../../environments/environment';
 import { Genre } from '../interfaces/genres.interface';
 import { InfoAnime } from '../interfaces/animeInfo.interface';
+import {  EpisodesAnime } from '../interfaces/anime-episodes.intefaces';
+import { GenresAnime } from '../interfaces/genresByanime.interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class AnimeService {
@@ -16,7 +18,7 @@ export class AnimeService {
     return this.httpClient.get<Anime>(`${this.baseUrl}/anime?page=${page}`);
   }
 
-  getAnimeById(id: string): Observable<InfoAnime> {
+  getAnimeById(id: number): Observable<InfoAnime> {
     return this.httpClient.get<InfoAnime>(`${this.baseUrl}/anime/${id}`).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 404) {
@@ -30,14 +32,20 @@ export class AnimeService {
   }
 
 
-
-
-
   getSugges(query: string): Observable<Anime> {
     return this.httpClient.get<Anime>(`${this.baseUrl}/anime?q=${query}`);
   }
+getAllGenres():Observable<Genre>{
+  return this.httpClient.get<Genre>(`${this.baseUrl}/genres/anime`)
+}
 
-  getAnimeGenres(): Observable<Genre> {
-    return this.httpClient.get<Genre>(`${this.baseUrl}/genres/anime`);
+  getAnimeGenres(id:number,page:number): Observable<GenresAnime> {
+    return this.httpClient.get<GenresAnime>(`${this.baseUrl}/anime?genres=${id}&page=${page}`);
   }
+
+getEpisodesAnime(id:number):Observable<EpisodesAnime>{
+  return this.httpClient.get<EpisodesAnime>(`${this.baseUrl}/anime/${id}/videos/episodes`)
+}
+
+
 }
