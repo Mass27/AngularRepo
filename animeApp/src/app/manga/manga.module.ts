@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { CardComponent } from './components/card/card.component';
 import { InfoMangaComponent } from './pages/info-manga/info-manga.component';
+import { SearchBoxComponent } from './components/search-box/search-box.component';
 
 
 
@@ -16,7 +17,8 @@ import { InfoMangaComponent } from './pages/info-manga/info-manga.component';
     LayoutPageComponent,
     ListComponent,
     CardComponent,
-    InfoMangaComponent
+    InfoMangaComponent,
+    SearchBoxComponent
 
   ],
   imports: [

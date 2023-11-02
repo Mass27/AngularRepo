@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AnimeService } from '../../services/anime.service';
-import { Anime, Datum } from '../../interfaces/anime.interfaces';
+import { Anime } from '../../interfaces/anime.interfaces';
 import { Genre, DatumGenre } from '../../interfaces/genres.interface';
 import { DatumGenresAnime, GenresAnime } from '../../interfaces/genresByanime.interfaces';
 

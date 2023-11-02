@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input } from '@angular/core';
 import { DatumGenresAnime } from '../../interfaces/genresByanime.interfaces';
 
 @Component({
@@ -7,10 +6,6 @@ import { DatumGenresAnime } from '../../interfaces/genresByanime.interfaces';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css'],
 })
-export class CardComponent implements OnInit {
+export class CardComponent  {
   @Input() animes!: DatumGenresAnime;
-
-  constructor(private router: Router) {}
-
-  ngOnInit(): void {}
 }

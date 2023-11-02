@@ -34,6 +34,10 @@ export class MangaService {
     );
   }
 
-
+getSugManga(query: string): Observable<Manga> {
+    return this.http.get<Manga>(`${this.baseUrl}/manga?q=${query}`);
+  }
 
 }
+
+

@@ -281,9 +281,9 @@ export class AgregarComponent implements OnInit {
 
     console.log(idEm, this.imgFile);
 //fix using interface
-    if (idEm !== -1 && this.imgFile) {
-      this.uploadImage(idEm, this.imgFile, true);
-    }
+    // if (idEm !== -1 && this.imgFile) {
+    //   this.uploadImage(idEm, this.imgFile, true);
+    // }
   }
 
 }

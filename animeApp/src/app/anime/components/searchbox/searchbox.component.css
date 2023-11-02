@@ -1,0 +1,66 @@
+.search-container {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  margin: 4rem auto;
+}
+
+.search-input {
+  position: relative;
+}
+
+.search-box {
+  width: 100%;
+  padding: 8px 16px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 24px;
+  outline: none;
+}
+
+.clear-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 8px;
+  cursor: pointer;
+  fill: #888;
+  transition: fill 0.3s;
+}
+
+.clear-button:hover {
+  fill: #666;
+}
+
+.search-results {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  max-height: 240px;
+  overflow-y: auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-top: 8px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+li:hover {
+  background-color: #f5f5f5;
+}
+
+.selected-anime {
+  margin-top: 8px;
+  /* Estilos del anime seleccionado */
+}

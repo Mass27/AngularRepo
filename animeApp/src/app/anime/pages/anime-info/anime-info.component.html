@@ -1,3 +1,4 @@
+
 <div class="anime-details-container">
   <div class="anime-details-card">
     <div class="anime-image">
@@ -28,12 +29,9 @@
       <div *ngIf="animeInfo?.data?.trailer?.youtube_id" class="anime-trailer-section">
         <h2 class="anime-section-title">Trailer:</h2>
         <div class="anime-trailer">
-          <iframe
-            [src]="animeInfo?.safeTrailerUrl"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
+          <a [href]="'https://www.youtube.com/watch?v=' + animeInfo?.data?.trailer?.youtube_id" target="_blank" class="trailer-link">
+            Ver Trailer en YouTube
+          </a>
         </div>
       </div>
 
@@ -59,3 +57,4 @@
     <button class="anime-back-button" (click)="goBack()">Regresar</button>
   </div>
 </div>
+

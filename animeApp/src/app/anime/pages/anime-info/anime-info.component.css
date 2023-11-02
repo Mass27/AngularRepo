@@ -147,3 +147,67 @@
 .anime-back-button:hover {
   background-color: #999;
 }
+
+.trailer-link {
+  display: inline-block;
+  background-color: #ff5722;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.trailer-link:hover {
+  background-color: #f44336;
+  transform: scale(1.05);
+  border: 2px solid #fff;
+}
+
+.trailer-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, transparent 50%, rgba(255, 255, 255, 0.3) 50%);
+  background-size: 200% 100%;
+  transition: background-position 0.3s ease;
+}
+
+.trailer-link:hover::before {
+  left: 100%;
+  background-position: -100% 0;
+}
+
+/* Agregar animación de desvanecimiento al hacer clic */
+.trailer-link:active {
+  opacity: 0.5; /* Puedes ajustar la opacidad según tus preferencias */
+}
+/* CSS para animar el título al cargar la página */
+.anime-title {
+  font-size: 36px;
+  margin: 20px 0;
+  text-align: center;
+  color: rgb(76, 5, 25); /* Color pastel naranja */
+  opacity: 0; /* Inicialmente oculto */
+  animation: fadeIn 1.5s ease-in-out forwards; /* Animación de desvanecimiento */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.body {
+  background: linear-gradient(45deg, #007bff 25%, #ff7f50 25%, #ff7f50 50%, #007bff 50%, #007bff 75%, #ff7f50 75%, #ff7f50);
+  background-size: 50px 50px;
+}

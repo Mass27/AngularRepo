@@ -15,19 +15,17 @@ currentPage = 1 ;
 constructor( private mangaService:MangaService){}
 
 ngOnInit(): void {
-
-  this.mangaService.getAllManga().subscribe( (data) => {
-    this.mangaList = data.data;
-  });
-
+  // this.mangaService.getAllManga().subscribe( (data) => {
+  //   this.mangaList = data.data;
+  //   console.log(this.mangaList)
+  // });
   this.loadMangaList();
-
 }
-
 
 loadMangaList() {
   this.mangaService.getPaginationManga(this.currentPage).subscribe((data: Manga) => {
     this.mangaList = data.data;
+    console.log(this.mangaList)
     this.scrollToTop();
   });
 }

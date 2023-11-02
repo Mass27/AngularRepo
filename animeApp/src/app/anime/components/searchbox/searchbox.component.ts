@@ -1,65 +1,68 @@
-// Importa las dependencias necesarias
-import { Component } from '@angular/core';
-import { Anime, Datum } from '../../interfaces/anime.interfaces';
-import { AnimeService } from '../../services/anime.service';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
+import { Datum } from '../../interfaces/anime.interfaces';
+import { AnimeService } from '../../services/anime.service';
 import { Router } from '@angular/router';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  filter,
-  map,
-  switchMap,
-} from 'rxjs';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-searchbox',
   templateUrl: './searchbox.component.html',
   styleUrls: ['./searchbox.component.css'],
 })
-export class SearchboxComponent {
+export class SearchboxComponent implements OnInit {
   searchInput = new FormControl('');
   anime: Datum[] = [];
-  selectAnime?: Datum;
+  selectedAnime?: Datum;
 
   constructor(private animeService: AnimeService, private router: Router) {}
 
-  // Función para limpiar la búsqueda
+  ngOnInit() {
+    this.setupSearchInputListener();
+  }
+
   clearSearch(): void {
     this.searchInput.reset();
     this.anime = [];
-    this.selectAnime = undefined;
+    this.selectedAnime = undefined;
   }
 
-  searchAnime(): void {
-    const value: string = this.searchInput.value || '';
-
+  private setupSearchInputListener(): void {
     this.searchInput.valueChanges
-      .pipe(
-        debounceTime(300),
-        distinctUntilChanged(),
-        filter((value: string | null) => !!value), // Filtrar valores nulos
-        map((value: string | null) => value || ''), // Convertir null a cadena vacía
-        switchMap((value: string) => this.animeService.getSugges(value))
-      )
-      .subscribe((response) => {
-        if (response && response.data.length > 0) {
-          this.anime = response.data;
-          this.selectAnime = undefined; // Limpia la selección actual
-        } else {
-          this.anime = [];
-          this.selectAnime = undefined;
-        }
-      });
+  .pipe(
+    debounceTime(300),
+    distinctUntilChanged(),
+    filter((value: string | null) => !!value), // Filtrar valores nulos
+    switchMap((value: string | null) => {
+      if (value) {
+        return this.animeService.getSugges(value);
+      } else {
+        return of({ data: [] }); // Retornar un observable con datos vacíos en caso de valor nulo
+      }
+    })
+  )
+  .subscribe((response) => {
+    this.handleSearchResponse(response);
+  });
+  }
+
+  private handleSearchResponse(response: any): void {
+    if (response && response.data) {
+      this.anime = response.data;
+      this.selectedAnime = undefined;
+    } else {
+      this.anime = [];
+      this.selectedAnime = undefined;
+    }
   }
 
   selectAnimeItem(anime: Datum): void {
-    this.selectAnime = anime; // Establecer la selección al hacer clic en un elemento
+    this.selectedAnime = anime;
   }
 
   goToAnimePage(animeId: number): void {
     this.router.navigate(['/anime', animeId]);
-
-    this.clearSearch(); // Utiliza la función para limpiar la búsqueda
+    this.clearSearch();
   }
 }

@@ -3,6 +3,12 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  background-color: #f7f7f7; /* Fondo gris claro */
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Filter Section */
@@ -11,6 +17,9 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+  transition: transform 0.3s ease-in-out;
 }
 
 /* Custom Select */
@@ -18,25 +27,27 @@
   font-size: 1.5rem;
   font-weight: bold;
   margin-right: 1rem;
+  color: #333;
 }
 
 .custom-select select {
-  width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 0.5rem 1rem;
   font-size: 16px;
-  color: #333;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  color: #fff;
+  background-color: #fff; /* Amarillo claro */
+  border: none;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   appearance: none;
   outline: none;
-  transition: border-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+  transform: scale(1);
 }
 
 .custom-select select:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+  background-color:rgb(76, 5, 25); /* Naranja claro al enfocar */
+  box-shadow: 0 0 6px rgba(255, 165, 0, 0.4);
+  transform: scale(1.05);
 }
 
 /* Anime Grid */
@@ -44,6 +55,7 @@
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
   gap: 1rem;
+  transition: transform 0.3s ease-in-out;
 }
 
 @media (min-width: 768px) {
@@ -59,7 +71,12 @@
 }
 
 .card {
+  background-color: #fff; /* Fondo blanco */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease-in-out;
+  transform: scale(1);
 }
 
 .card:hover {
@@ -78,7 +95,7 @@
   padding: 0.75rem 1.5rem;
   font-size: 16px;
   color: #fff;
-  background-color: #e53935;
+  background-color: #ff4500; /* Rojo oscuro */
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -87,10 +104,5 @@
 }
 
 .pagination button:hover {
-  background-color: #c62828;
-}
-
-.pagination span {
-  font-size: 18px;
-  color: #333;
+  background-color: #ff6347; /* Rojo más claro al pasar el cursor */
 }

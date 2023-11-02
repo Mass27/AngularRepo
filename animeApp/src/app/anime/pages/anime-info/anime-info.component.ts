@@ -11,11 +11,12 @@ import { DatumEpisodesAnime } from '../../interfaces/anime-episodes.intefaces';
   styleUrls: ['./anime-info.component.css'],
 })
 export class AnimeInfoComponent implements OnInit {
-  animeInfo?: InfoAnime & { safeTrailerUrl: SafeResourceUrl };
+  animeInfo?: InfoAnime;
   episodes: DatumEpisodesAnime[] = [];
   visibleEpisodes: DatumEpisodesAnime[] = [];
   episodesPerPage = 5;
   showMoreButton = false;
+  errorLoadingAnime = false; // Controla si se muestra un mensaje de error
 
   constructor(
     private animeService: AnimeService,
@@ -30,30 +31,33 @@ export class AnimeInfoComponent implements OnInit {
       .subscribe(
         (anime) => {
           if (!anime) {
-            this.router.navigate(['/anime/list']);
-          } else {
-            this.animeInfo = {
-              ...anime,
-              safeTrailerUrl: this.getSafeTrailerUrl(anime.data.trailer.youtube_id),
-            };
-            this.loadEpisodes(anime.data.mal_id); // Reemplazamos la carga de episodios por una función separada
+            this.errorLoadingAnime = true; // Mostrar mensaje de error
+            return;
           }
+
+          this.animeInfo = {
+            ...anime,
+            safeTrailerUrl: this.getSafeTrailerUrl(anime.data.trailer.youtube_id),
+          };
+          this.loadEpisodes(anime.data.mal_id);
         },
         (error) => {
           console.error('Error al encontrar el anime', error);
+          this.errorLoadingAnime = true; // Mostrar mensaje de error
         }
       );
   }
-
   goBack() {
     this.router.navigateByUrl('anime/list');
   }
-
-  getSafeTrailerUrl(trailerId: string): SafeResourceUrl {
-    const url = `https://www.youtube.com/watch?v=${trailerId}`;
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  getSafeTrailerUrl(trailerId: string): SafeResourceUrl | null {
+    if (trailerId) {
+      const url = `https://www.youtube.com/embed/${trailerId}`;
+      return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    } else {
+      return null;
+    }
   }
-  
   // Función para cargar los episodios del anime
   private loadEpisodes(animeId: number) {
     this.animeService.getEpisodesAnime(animeId).subscribe((episode) => {
@@ -62,20 +66,16 @@ export class AnimeInfoComponent implements OnInit {
     });
   }
 
-  showMoreEpisodes(){
-    const currentEpisodio= this.visibleEpisodes.length;
-    const moreEpisodes= this.episodes.slice(currentEpisodio, currentEpisodio + this.episodesPerPage);
+  showMoreEpisodes() {
+    const currentEpisodes = this.visibleEpisodes.length;
+    const moreEpisodes = this.episodes.slice(currentEpisodes, currentEpisodes + this.episodesPerPage);
+    this.visibleEpisodes = [...this.visibleEpisodes, ...moreEpisodes];
+    this.updateVisibleEpisodes();
   }
-
-
 
 
   // Función para actualizar el estado del botón "Mostrar más"
   private updateVisibleEpisodes() {
-    if (this.episodes.length > this.visibleEpisodes.length) {
-      this.showMoreButton = true;
-    } else {
-      this.showMoreButton = false;
-    }
+    this.showMoreButton = this.episodes.length > this.visibleEpisodes.length;
   }
 }
