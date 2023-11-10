@@ -1,4 +1,41 @@
-<div class="anime-page">
+<div class="op-list">
+  <h2>Géneros:</h2>
+      <select [(ngModel)]="selectedGenreId" (change)="filterByGenre(selectedGenreId)">
+        <option value="">Todos los géneros</option>
+        <option *ngFor="let genre of genres" [value]="genre.mal_id">{{ genre.name }}</option>
+      </select>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 gridmanga " >
+  <app-card
+  *ngFor="let anime of animeList | slice: 0:20" [animes]="anime" class="card"
+  ></app-card>
+</div>
+<div class="flex items-center justify-center space-x-4 mt-4">
+  <button
+    class="px-4 py-2 bg-red-700 hover:bg-rose-950 text-white rounded-md"
+    (click)="previousPage()"
+  >
+    Anterior
+  </button>
+  <span class="text-gray-700">{{ currentPage }}</span>
+  <button
+    class="px-4 py-2 bg-red-700 hover:bg-rose-950 text-white rounded-md"
+    (click)="nextPage()"
+  >
+    Siguiente
+  </button>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- <div class="anime-page">
   <div class="filter-section">
     <div class="custom-select">
       <h2>Géneros:</h2>
@@ -19,4 +56,4 @@
     <button (click)="nextPage()">Siguiente</button>
   </div>
 </div>
-
+ -->

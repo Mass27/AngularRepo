@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AnimeService } from '../../services/anime.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { InfoAnime } from '../../interfaces/animeInfo.interface';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { DatumEpisodesAnime } from '../../interfaces/anime-episodes.intefaces';
+import { Location } from '@angular/common';
 
 @Component({
   templateUrl: './anime-info.component.html',
@@ -21,9 +22,13 @@ export class AnimeInfoComponent implements OnInit {
   constructor(
     private animeService: AnimeService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private sanitizer: DomSanitizer
-  ) {}
+    private sanitizer: DomSanitizer,
+    private location:Location
+  ) {
+const currenLocation = this.location.path();
+console.log(currenLocation);
+
+  }
 
   ngOnInit(): void {
     this.activatedRoute.params
@@ -48,7 +53,7 @@ export class AnimeInfoComponent implements OnInit {
       );
   }
   goBack() {
-    this.router.navigateByUrl('anime/list');
+    this.location.back();//me redirige
   }
   getSafeTrailerUrl(trailerId: string): SafeResourceUrl | null {
     if (trailerId) {

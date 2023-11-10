@@ -27,9 +27,9 @@ const routes: Routes = [
   component:LayoutPageMainComponent
 },
 {
-  path:'',
-  redirectTo:'anime',
-  pathMatch:'full'
+  path: '',
+  redirectTo: 'anime/list/1',
+  pathMatch: 'full'
 }
 
 

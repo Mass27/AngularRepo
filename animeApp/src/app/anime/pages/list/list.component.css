@@ -1,108 +1,28 @@
-/* Anime Page */
-.anime-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f7f7f7; /* Fondo gris claro */
-  border-radius: 10px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+.op-list{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Filter Section */
-.filter-section {
-  display: flex;
+  margin: 1rem;
   justify-content: center;
-  align-items: center;
-  margin-bottom: 2rem;
-  gap: 1rem;
-  flex-wrap: wrap;
-  transition: transform 0.3s ease-in-out;
-}
-
-/* Custom Select */
-.custom-select h2 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-right: 1rem;
-  color: #333;
-}
-
-.custom-select select {
+  }
+  .op-list h2{
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 10px;
+    }
+    .op-list select{
   padding: 0.5rem 1rem;
   font-size: 16px;
-  color: #fff;
-  background-color: #fff; /* Amarillo claro */
   border: none;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  appearance: none;
   outline: none;
-  transition: background-color 0.3s ease-in-out;
   transform: scale(1);
-}
+      }
+      .card {
+        transition: ease-in 0.3s;
+        transform: scale(1);
+      }
 
-.custom-select select:focus {
-  background-color:rgb(76, 5, 25); /* Naranja claro al enfocar */
-  box-shadow: 0 0 6px rgba(255, 165, 0, 0.4);
-  transform: scale(1.05);
-}
-
-/* Anime Grid */
-.anime-grid {
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: 1rem;
-  transition: transform 0.3s ease-in-out;
-}
-
-@media (min-width: 768px) {
-  .anime-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1024px) {
-  .anime-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
-.card {
-  background-color: #fff; /* Fondo blanco */
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease-in-out;
-  transform: scale(1);
-}
-
-.card:hover {
-  transform: translateY(-5px) scale(1.05);
-}
-
-/* Pagination */
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
-}
-
-.pagination button {
-  padding: 0.75rem 1.5rem;
-  font-size: 16px;
-  color: #fff;
-  background-color: #ff4500; /* Rojo oscuro */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  outline: none;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.pagination button:hover {
-  background-color: #ff6347; /* Rojo más claro al pasar el cursor */
-}
+      .card:hover {
+        transform: translateY(-5px) scale(1.05);
+        cursor: pointer;
+      }

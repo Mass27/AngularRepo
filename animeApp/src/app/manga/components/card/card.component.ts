@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MangaService } from '../../services/manga.service';
-import { DatoManga } from '../../interfaces/manga.interface';
+import { DatumGenreByManga } from '../../interfaces/mangaGenresBy.interfaces';
 
 @Component({
   selector: 'app-card-manga',
@@ -10,7 +9,7 @@ import { DatoManga } from '../../interfaces/manga.interface';
 export class CardComponent implements OnInit{
 
 
-@Input() manga!:DatoManga;
+@Input() manga!:DatumGenreByManga;
 
 ngOnInit(): void {
 

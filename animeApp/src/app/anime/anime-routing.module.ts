@@ -11,13 +11,13 @@ const routes: Routes = [
   component:LayoutPageComponent,
   children:[
     {
-      path:'list',
-      component:ListComponent
+      path: 'list/:page',
+      component: ListComponent
     },{
       path:':id',
       component:AnimeInfoComponent
     },
-    { path: '**', redirectTo: 'list' },
+    { path: '**', redirectTo: 'list/1' },
   ]
 }
 

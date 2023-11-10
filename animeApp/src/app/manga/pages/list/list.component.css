@@ -1,0 +1,28 @@
+.op-list{
+display: flex;
+margin: 1rem;
+justify-content: center;
+}
+.op-list h2{
+font-weight: 600;
+font-size: 1rem;
+margin-top: 10px;
+  }
+  .op-list select{
+padding: 0.5rem 1rem;
+font-size: 16px;
+border: none;
+border-radius: 5px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+outline: none;
+transform: scale(1);
+    }
+    .card {
+      transition: ease-in 0.3s;
+      transform: scale(1);
+    }
+
+    .card:hover {
+      transform: translateY(-5px) scale(1.05);
+      cursor: pointer;
+    }
