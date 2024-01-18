@@ -53,7 +53,7 @@ console.log(currenLocation);
       );
   }
   goBack() {
-    this.location.back();//me redirige
+     this.location.back();//me redirige
   }
   getSafeTrailerUrl(trailerId: string): SafeResourceUrl | null {
     if (trailerId) {

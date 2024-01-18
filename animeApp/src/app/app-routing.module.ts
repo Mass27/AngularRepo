@@ -28,7 +28,7 @@ const routes: Routes = [
 },
 {
   path: '',
-  redirectTo: 'anime/list/1',
+  redirectTo: 'anime',
   pathMatch: 'full'
 }
 

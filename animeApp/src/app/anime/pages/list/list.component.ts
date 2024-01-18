@@ -6,7 +6,7 @@ import {
   DatumGenresAnime,
   GenresAnime,
 } from '../../interfaces/genresByanime.interfaces';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -15,13 +15,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ListComponent implements OnInit {
   animeList: DatumGenresAnime[] = [];
+  currentPage =  1;
   genres: DatumGenre[] = [];
   selectedGenreId: number | null = null;
 
-  currentPage = this.route.snapshot.params['page'] || 1;
+
 
   constructor(private animeService: AnimeService,   private router: Router,
-    private route: ActivatedRoute) {}
+    ) {}
 
   ngOnInit(): void {
     this.loadGenres();
@@ -29,23 +30,20 @@ export class ListComponent implements OnInit {
   }
 
   loadAnimeList(): void {
-    this.animeService
-      .getPaginatedData(this.currentPage)
-      .subscribe((data: Anime) => {
-        if (this.selectedGenreId) {
-          // Filtrar por género si hay un género seleccionado
-          this.animeService
-            .getAnimeGenres(this.selectedGenreId, this.currentPage)
-            .subscribe((filteredData: GenresAnime) => {
-              this.animeList = filteredData.data;
-              this.scrollToTop();
-            });
-        } else {
-          // Mostrar todos los animes si no hay un género seleccionado
-          this.animeList = data.data;
-        }
-        this.scrollToTop();
-      });
+    this.animeService.getPaginatedData(this.currentPage).subscribe((data: Anime) => {
+      if (this.selectedGenreId) {
+        // Filtrar por género si hay un género seleccionado
+        this.animeService.getAnimeGenres(this.selectedGenreId,this.currentPage).subscribe((filteredData: GenresAnime) => {
+          this.animeList = filteredData.data;
+          this.scrollToTop();
+        });
+      } else {
+        // Mostrar todos los animes si no hay un género seleccionado
+        this.animeList = data.data;
+
+      }
+      this.scrollToTop();
+    });
   }
 
   loadGenres(): void {
@@ -57,21 +55,17 @@ export class ListComponent implements OnInit {
   filterByGenre(genreId: number | null): void {
     this.selectedGenreId = genreId;
     this.currentPage = 1; // Reiniciar la página al cambiar el género
-    this.router.navigate(['anime/list', this.currentPage.toString()]);
     this.loadAnimeList(); // Asegúrate de que se llame aquí
   }
 
   nextPage() {
     this.currentPage++;
-    this.router.navigate(['anime/list', this.currentPage.toString()]);
     this.loadAnimeList();
-
   }
 
   previousPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
-      this.router.navigate(['anime/list', this.currentPage.toString()]);
       this.loadAnimeList();
     }
   }
