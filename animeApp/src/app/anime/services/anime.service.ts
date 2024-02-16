@@ -7,6 +7,7 @@ import { Genre } from '../interfaces/genres.interface';
 import { InfoAnime } from '../interfaces/animeInfo.interface';
 import {  EpisodesAnime } from '../interfaces/anime-episodes.intefaces';
 import { GenresAnime } from '../interfaces/genresByanime.interfaces';
+import { Datum, EpisodePop } from '../interfaces/popularAnimeEps.interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class AnimeService {
@@ -19,6 +20,7 @@ export class AnimeService {
   }
 
   getAnimeById(id: number): Observable<InfoAnime> {
+
     return this.httpClient.get<InfoAnime>(`${this.baseUrl}/anime/${id}`).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 404) {
@@ -47,5 +49,8 @@ getEpisodesAnime(id:number):Observable<EpisodesAnime>{
   return this.httpClient.get<EpisodesAnime>(`${this.baseUrl}/anime/${id}/videos/episodes`)
 }
 
+getEpisodesAnimePopular():Observable<EpisodePop>{
+  return this.httpClient.get<EpisodePop>(`${this.baseUrl}/watch/episodes/popular`)
+}
 
 }

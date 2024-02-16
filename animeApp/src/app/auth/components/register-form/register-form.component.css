@@ -1,0 +1,178 @@
+/* Estilos generales */
+body {
+  font-family: 'Roboto', sans-serif; /* Cambiamos la fuente */
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos para el contenedor principal */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #333333;
+}
+
+/* Estilos para el formulario */
+.login-form {
+  background-color: #212121; /* Fondo del formulario */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Estilo para el título */
+.form-header h2 {
+  margin: 0;
+  color: #ff6f00; /* Texto en color naranja similar al del anime */
+  font-family: 'Montserrat', sans-serif; /* Cambiamos la fuente */
+}
+
+/* Estilo para el toggle de inicio de sesión/registro */
+.toggle {
+  margin-bottom: 20px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  cursor: pointer;
+  margin-right: 20px;
+  font-size: 18px;
+  color: #ffffff; /* Texto blanco */
+}
+
+input[type="radio"] + label::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ffffff; /* Borde blanco */
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+input[type="radio"]:checked + label::before {
+  background-color: #ff6f00; /* Fondo naranja similar al del anime */
+}
+
+/* Estilos para los campos de entrada */
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ff6f00; /* Borde naranja similar al del anime */
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #333333; /* Fondo gris oscuro */
+  color: #ffffff; /* Texto blanco */
+}
+
+/* Estilo para el botón de enviar */
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #ff6f00; /* Fondo naranja similar al del anime */
+  border: none;
+  border-radius: 5px;
+  color: #ffffff; /* Texto blanco */
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #ff902b; /* Color naranja más claro al pasar el mouse */
+}
+
+/* Animación para el formulario */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.asuka-theme {
+  background-color: #d50000; /* Rojo inspirado en Asuka */
+}
+
+.asuka-theme .form-header h2 {
+  color: #ff6f00; /* Texto en color naranja similar al del anime */
+  font-weight: 600;
+  font-size: 30px;
+}
+
+.asuka-theme input[type="radio"] + label::before {
+  border-color: #ff6f00; /* Borde naranja similar al del anime */
+}
+
+.asuka-theme button[type="submit"] {
+  background-color: #ff6f00; /* Fondo naranja similar al del anime */
+}
+
+.asuka-theme button[type="submit"]:hover {
+  background-color: #ff902b; /* Color naranja más claro al pasar el mouse */
+}
+
+/* Estilos para el tema de Rei */
+.rei-theme {
+  background-color: #009688; /* Verde inspirado en Rei */
+}
+
+.rei-theme .form-header h2 {
+  color: whitesmoke;
+  font-weight: 600;
+  font-size: 30px; /* Texto en color rosa similar al del anime */
+}
+
+.rei-theme input[type="radio"] + label::before {
+  border-color: #c51162; /* Borde rosa similar al del anime */
+}
+
+.rei-theme button[type="submit"] {
+  background-color: #c51162; /* Fondo rosa similar al del anime */
+}
+
+.rei-theme button[type="submit"]:hover {
+  background-color: #ff80ab; /* Color rosa más claro al pasar el mouse */
+}
+
+/* Animación de transición */
+.form-transition {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Animación para mostrar el formulario de inicio de sesión */
+.login-form-enter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.login-form-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Animación para mostrar el formulario de registro */
+.register-form-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.register-form-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+}

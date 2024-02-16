@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { DatoManga } from '../../interfaces/manga.interface';
 import { MangaService } from '../../services/manga.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { InfoManga } from '../../interfaces/manga-info.interfaces';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-info-manga',
   styleUrls: ['./info-manga.component.css'],
@@ -16,7 +15,8 @@ manga!:InfoManga;
 
 constructor( private mangaService:MangaService,
              private ActivatedRoute:ActivatedRoute,
-              private router:Router  ){}
+              private router:Router,
+              private location:Location  ){}
 
 
 ngOnInit(): void {
@@ -45,7 +45,7 @@ ngOnInit(): void {
 
 
 goBack() {
-  this.router.navigateByUrl('manga/list');
+  this.location.back();
 }
 
 

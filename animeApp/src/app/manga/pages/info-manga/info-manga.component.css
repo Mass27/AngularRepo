@@ -43,12 +43,21 @@
 }
 
 .manga-title {
-  font-size: 2rem; /* Tamaño de título más pequeño en móviles */
-  margin-bottom: 1rem;
-  color: #333;
-  transition: color 0.2s;
+  font-size: 36px;
+  margin: 20px 0;
+  text-align: center;
+  color: rgb(76, 5, 25); /* Color pastel naranja */
+  opacity: 0; /* Inicialmente oculto */
+  animation: fadeIn 1.5s ease-in-out forwards;
 }
-
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .manga-subtitle {
   font-size: 1.25rem; /* Tamaño de subtítulo más pequeño en móviles */
   margin-bottom: 1rem;
@@ -71,6 +80,7 @@
   border-radius: 4px;
   font-weight: bold;
   transition: background-color 0.2s;
+  cursor: pointer;
 }
 
 .manga-genre:hover {

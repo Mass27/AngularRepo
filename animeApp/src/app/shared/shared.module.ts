@@ -3,9 +3,6 @@ import { LayoutPageMainComponent } from './layout-page-main/layout-page-main.com
 import { Error404pageComponent } from './error404page/error404page.component';
 import { RouterModule } from '@angular/router';
 
-
-
-
 @NgModule({
   declarations: [
 LayoutPageMainComponent,

@@ -1,0 +1,23 @@
+<div class="modal">
+  <div class="modal-content">
+    <div class="slider">
+      <div class="flex space-x-4 overflow-x-auto">
+        <!-- Utilizamos flexbox y overflow para permitir el desplazamiento horizontal -->
+        <div *ngFor="let episode of epPop" class="slide">
+          <!-- Contenedor para cada slide -->
+          <img [src]="episode.entry.images?.jpg?.image_url" alt="Episode Image" class="episode-image">
+          <!-- Imagen del episodio -->
+          <div class="overlay">
+            <!-- Contenedor para el título y número del episodio -->
+            <h3 class="episode-title">{{ episode.entry.title }}</h3>
+            <!-- Título del anime -->
+            <div *ngFor="let episodeDetail of episode.episodes" class="episode-number">
+              Episode Number: {{ episodeDetail.title }}
+              <!-- Número del episodio -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

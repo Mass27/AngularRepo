@@ -1,0 +1,84 @@
+<div class="login-container japanese-style">
+  <div class="login-form"
+  [ngClass]="{'asuka-theme': selectedCharacter === 'asuka', 'rei-theme': selectedCharacter === 'rei'}">
+    <div class="form-header">
+      <h2>
+        <span class="japanese-font">{{ title }}</span>
+      </h2>
+    </div>
+
+    <div class="toggle">
+      <input
+        type="radio"
+        id="login-radio"
+        name="toggle"
+        value="login"
+        [(ngModel)]="selectedAction"
+        (change)="onRadioChange($event)"
+      />
+      <label for="login-radio">Iniciar Sesión</label>
+      <input
+        type="radio"
+        id="register-radio"
+        name="toggle"
+        value="register"
+        [(ngModel)]="selectedAction"
+        (change)="onRadioChange($event)"
+      />
+      <label for="register-radio">Registrarse</label>
+    </div>
+
+    <form
+      [formGroup]="selectedAction === 'login' ? loginForm : registerForm"
+  class="form"
+  [@formState]="selectedAction"
+      (ngSubmit)="onSubmit()"
+    >
+      <div *ngIf="selectedAction === 'login'" class="login-form-items">
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          required
+          placeholder="Usuario"
+        />
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          required
+          placeholder="Contraseña"
+        />
+      </div>
+
+      <div *ngIf="selectedAction === 'register'" class="login-form-items">
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          required
+          email
+          placeholder="Correo electrónico"
+        />
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          required
+          placeholder="Usuario"
+        />
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          required
+          placeholder="Contraseña"
+        />
+      </div>
+
+      <button type="submit">
+        {{ selectedAction === "login" ? "Iniciar Sesión" : "Registrarse" }}
+      </button>
+    </form>
+  </div>
+</div>

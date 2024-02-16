@@ -1,0 +1,47 @@
+.modal {
+  /* Estilos para el modal */
+}
+
+.modal-content {
+  /* Estilos para el contenido del modal */
+}
+
+.slider {
+  /* Estilos para el slider */
+}
+
+.slide {
+  position: relative;
+  width: 320px; /* Ajusta el ancho según tu preferencia */
+  height: 180px; /* Ajusta la altura según tu preferencia */
+}
+
+.episode-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 10px;
+  color: white;
+}
+
+.episode-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.episode-number {
+  font-size: 14px;
+}

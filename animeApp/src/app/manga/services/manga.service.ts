@@ -5,7 +5,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { Manga } from '../interfaces/manga.interface';
 import { InfoManga } from '../interfaces/manga-info.interfaces';
 
-import { DatumGenreByManga, DatumGenreManga } from '../interfaces/mangaGenresBy.interfaces';
+import { DatumGenreManga } from '../interfaces/mangaGenresBy.interfaces';
 import { GeneralGenreManga } from '../interfaces/generalGenresManga.interfaces';
 
 

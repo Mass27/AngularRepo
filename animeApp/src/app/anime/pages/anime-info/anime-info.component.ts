@@ -53,8 +53,9 @@ console.log(currenLocation);
       );
   }
   goBack() {
-     this.location.back();//me redirige
+     this.location.back();//me redirige al ultimo lugar 
   }
+
   getSafeTrailerUrl(trailerId: string): SafeResourceUrl | null {
     if (trailerId) {
       const url = `https://www.youtube.com/embed/${trailerId}`;
